@@ -13,7 +13,8 @@ export default function MaquinaItem(props: MaquinaProps){
     return (
         
         <Link href={{
-            pathname: `${link}/inicio/maquinas/maquina/${maquina.id}`}} >
+            pathname: `${link}/inicio/maquinas/maquina`,
+            query: {id: maquina.id}}} >
      
         <div className={`
         flex flex-col border rounded-lg p-1
