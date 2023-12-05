@@ -1,9 +1,9 @@
 import AddMaquina from "@/components/AddMaquina"
 import MaquinaItem from "@/components/MaquinaItem"
-import link from "@/link/link"
 
 async function getData() {
-    const testURL = `${link}/api/maquinas` 
+    
+    const testURL = `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/maquinas` 
     const data = await fetch(testURL, {cache: 'no-store'})
     const maquina = await data.json()
     return maquina
