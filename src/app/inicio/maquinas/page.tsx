@@ -2,7 +2,7 @@ import AddMaquina from "@/components/AddMaquina"
 import MaquinaItem from "@/components/MaquinaItem"
 
 async function getData() {
-    const testURL = `http://localhost:3000/api/maquinas` 
+    const testURL = `./api/maquinas` 
     const data = await fetch(testURL, {cache: 'no-store'})
     const maquina = await data.json()
     return maquina
