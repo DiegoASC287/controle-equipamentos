@@ -1,0 +1,10 @@
+-- AlterTable
+ALTER TABLE "Caminhao" ALTER COLUMN "alimentacao" DROP NOT NULL,
+ALTER COLUMN "tara" DROP NOT NULL,
+ALTER COLUMN "volume_cacamba" DROP NOT NULL,
+ALTER COLUMN "placa" DROP NOT NULL,
+ALTER COLUMN "habilitacao_motorista" DROP NOT NULL,
+ALTER COLUMN "foto_habilitacao" DROP NOT NULL,
+ALTER COLUMN "foto_documento" DROP NOT NULL,
+ALTER COLUMN "modelo" DROP NOT NULL,
+ALTER COLUMN "marca" DROP NOT NULL;

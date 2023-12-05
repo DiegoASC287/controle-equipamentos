@@ -1,0 +1,206 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                String  @id @default(cuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id             String    @id @default(cuid())
+  name           String?
+  hashedPassword String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  papel          String?
+  accounts       Account[]
+  sessions       Session[]
+}
+
+model Maquina {
+  id              Int                 @id @default(autoincrement())
+  nome            String?
+  modelo          String?
+  imagem          String?             @default("https://source.unsplash.com/featured/300x300?backhoe")
+  acaoNecessaria  Boolean             @default(false)
+  quebrada        Boolean             @default(false)
+  motivo_quebrada String?
+  origem          String?
+  contador        Float?
+  categoria       String?
+  unidade         String?
+  alimentacao     String?
+  contadorInicial Float?
+  tipo            String?
+  aluguelInfo     Alugada?
+  atividades      Atividade[]
+  planoManutencao PlanoManutencao[]
+  caminhao        Caminhao?
+  manutencoes     Manutencao[]
+  item_associacao ItemAssociacaoEap[]
+
+  @@map("maquinas")
+}
+
+model Manutencao {
+  id             Int       @id @default(autoincrement())
+  descricao      String?
+  tipo           String?
+  dataRealizacao DateTime?
+  contador       Float?
+  custo          Float?
+  Maquina        Maquina?  @relation(fields: [maquinaId], references: [id])
+  maquinaId      Int?
+
+  @@map("manutencoes")
+}
+
+model Alugada {
+  id               Int       @id @default(autoincrement())
+  data_locacao     DateTime? @default(now())
+  previsao_entrega DateTime?
+  maquinaId        Int       @unique
+  maquina          Maquina   @relation(fields: [maquinaId], references: [id])
+  limite           Float?
+  fornecedor       String?
+
+  @@map("alugadas")
+}
+
+model PlanoManutencao {
+  id        Int     @id @default(autoincrement())
+  maquinaId Int
+  maquina   Maquina @relation(fields: [maquinaId], references: [id])
+  intervalo Float?
+  descricao String?
+
+  @@map("planos_manutencao")
+}
+
+model Atividade {
+  id                    Int             @id @default(autoincrement())
+  maquinaId             Int
+  maquina               Maquina         @relation(fields: [maquinaId], references: [id])
+  descricao_serv        String?
+  data_inicial_trabalho DateTime?
+  data_final_trabalho   DateTime?
+  operador              String?
+  horimetro_inicial     Float?
+  horimetro_final       Float?
+  interferencias        Interferencia[]
+  apontador             Apontador       @relation(fields: [apontadorId], references: [id])
+  eap                   ItemEap         @relation(fields: [eapId], references: [item])
+  eapId                 String
+  apontadorId           Int
+
+  @@map("atividades")
+}
+
+model Interferencia {
+  id                Int       @id @default(autoincrement())
+  hora_inicial      DateTime?
+  hora_final        DateTime?
+  motivo            String?
+  total_combustivel Float?
+  contador          Float?
+  atividade         Atividade @relation(fields: [atividadeId], references: [id])
+  atividadeId       Int
+
+  @@map("interferencias")
+}
+
+model Apontador {
+  id        Int         @id @default(autoincrement())
+  nome      String?
+  idade     Int?
+  atividade Atividade[]
+
+  @@map("apontadores")
+}
+
+model ItemEap {
+  id             Int         @id @default(autoincrement())
+  item           String      @unique
+  codigo         String
+  descricao      String
+  unidade        String
+  indice         Float
+  preco_unitario Float
+  atividades     Atividade[]
+
+  @@map("eap")
+}
+
+model ItemAssociacaoEap {
+  id                Int           @id @default(autoincrement())
+  itemEap           String?
+  apelido           String?
+  tipo              TipoAtividade @relation(fields: [tipo_atividade_id], references: [id])
+  tipo_atividade_id Int
+  maquinaId         Int
+  maquina           Maquina       @relation(fields: [maquinaId], references: [id])
+}
+
+model TipoAtividade {
+  id               Int                 @id @default(autoincrement())
+  nome             String?
+  unidade          String?
+  items_associacao ItemAssociacaoEap[]
+}
+
+//tabelas de tipos de maquinas
+model Caminhao {
+  id                    Int     @id @default(autoincrement())
+  alimentacao           String?
+  tara                  Float?
+  volume_cacamba        Float?
+  placa                 String?
+  habilitacao_motorista String?
+  foto_habilitacao      String?
+  foto_documento        String?
+  maquina               Maquina @relation(fields: [maquinaId], references: [id])
+  maquinaId             Int     @unique
+
+  @@map("tipo_caminhao")
+}
+
+model Retroescavadeira {
+  id                   Int    @id @default(autoincrement())
+  vol_concha           Float
+  certificado_operador String
+  modelo               String
+  marca                String
+
+  @@map("tipo_retroescavadeira")
+}
+
+//Falar com gabriela sobre checklist de equipamentos
