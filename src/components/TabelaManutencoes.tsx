@@ -1,5 +1,6 @@
 'use client'
 import Maquina from "@/model/Maquina"
+import link from "@/app/pathspers"
 import { useEffect, useState } from "react"
 
 interface TabelaManutencoesProps{
@@ -9,7 +10,7 @@ interface TabelaManutencoesProps{
 export default function TabelaManutencoes(props: TabelaManutencoesProps){
     const [maquina, setMaquina] = useState<Maquina>()
     useEffect(()=> {
-        fetch(`http://localhost:3000/api/maquinas/consultamanutencoes?id=${props.id}`, {
+        fetch(`${link}/api/maquinas/consultamanutencoes?id=${props.id}`, {
             cache: 'no-store'
         })
         .then(item => item.json()).then(maq => setMaquina(maq))

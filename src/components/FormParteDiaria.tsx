@@ -7,6 +7,7 @@ import LinhaTabPartDiaria from "@/model/LinhaTabPartDiaria"
 import { IconArrowBigRight, IconX } from "@tabler/icons-react"
 import { Apontador, Maquina } from "@prisma/client"
 import DropEapApelido from "./DropEapApelido"
+import link from "@/app/pathspers"
 
 interface FormParteDiariaProps {
 adicionarLinha: (linhaTab: LinhaTabPartDiaria) => void
@@ -48,7 +49,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         minute: "numeric",
       })
       function addAtividade(atividade: LinhaTabPartDiaria){
-        fetch(`http://localhost:3000/api/maquinas/addatividade?id=${props.idMaquina}`, {
+        fetch(`${link}/api/maquinas/addatividade?id=${props.idMaquina}`, {
             method: 'POST',
             cache: 'no-store',
             body: JSON.stringify({...atividade})
@@ -57,7 +58,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         if(horimetroFinal && maquina?.contador){
         
             if (horimetroFinal >= maquina.contador){
-                fetch(`http://localhost:3000/api/maquinas/updatecontador`, {
+                fetch(`${link}/api/maquinas/updatecontador`, {
             method: 'POST',
             cache: 'no-store',
             body: JSON.stringify({idMaquina: maquina.id,
@@ -78,7 +79,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
     }, [])
 
     function buscarApontadores(){
-        fetch(`http://localhost:3000/api/apontadores`, {
+        fetch(`${link}/api/apontadores`, {
             method: 'GET',
             cache: 'no-store',
         }).then(resp => resp.json()).then(result => {
@@ -87,7 +88,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
 
     function buscarInfosMaquina(){
 
-            fetch(`http://localhost:3000/api/maquinas/consultaapenasmaquina?id=${props.idMaquina}`, {
+            fetch(`${link}/api/maquinas/consultaapenasmaquina?id=${props.idMaquina}`, {
                 cache: 'no-store'
             })
             .then(item => item.json()).then(maq => {

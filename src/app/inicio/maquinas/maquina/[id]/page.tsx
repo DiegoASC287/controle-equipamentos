@@ -2,13 +2,14 @@ import DescricaoAlugado from "@/components/DescricaoAlugado";
 import TabelaManutencoes from "@/components/TabelaManutencoes";
 import MaquinaFoto from "@/components/MaquinaFoto";
 import BotaoPartDiaria from "@/components/BotaoPartDiaria";
+import link from "@/app/pathspers";
 
 interface PageDetailProps{
     params: {id:string}
 }
 
 async function getData(id: string) {
-    const testURL = `http://localhost:3000/api/maquinas/consulta?id=${id}` 
+    const testURL = `${link}/api/maquinas/consulta?id=${id}` 
     const data = await fetch(testURL, {cache: 'no-store'})
     const maquina = await data.json()
     return maquina

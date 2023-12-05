@@ -9,9 +9,7 @@ import { IconX } from '@tabler/icons-react';
 import CaminhaoInterf from '@/model/Caminhao';
 import Caminhao from '@/components/tipos/Caminhao';
 import AluguelInfoProps from '@/model/AluguelInfo';
-import DropEap from '@/components/DropEap';
-import ItemAssociacaoEapModel from '@/model/ItemAssociacaoEapModel';
-import TipoAtividade from '@/model/TipoAtividade';
+import link from '@/app/pathspers';
 
 interface PageDetailProps{
     params: {id:string}
@@ -35,12 +33,8 @@ export default function PaginaMostrarMaquina({
     const [planoManutencao, setPlanoMan] = useState<MaquinaPlanoMan[]>([])
     const [aluguelInfo, setAluguelInfo] = useState<AluguelInfoProps>()
     const [caminhao, setCaminhao] = useState<CaminhaoInterf>()
-    const [atribuicoes, setAtribuicoes] = useState<ItemAssociacaoEapModel[]>([])
-    const [linhaAtribuicao, setLinhaAtribuicao] = useState<ItemAssociacaoEapModel>({maquinaId:0, tipo_atividade_id:0})
-    const [listaTipos, setListaTipos] = useState<TipoAtividade[]>()
-    const [selectTipo, setSelectTipo] = useState<string>()
+
     const [maquinaAdicionada, setMaquinaAdicionada] = useState<Maquina>()
-    const [t_atividade_id, setTipoAtId] = useState(0)
 
     const un = ["Unidade", "mês", 'h', 'km']
     const tipo = ['', 'Caminhão', 'Retro escavadeira', 'Notebook', 'Outro']
@@ -68,7 +62,7 @@ export default function PaginaMostrarMaquina({
         const maqCaminhao = {...maq, caminhao:caminhao}
         switch (maq?.tipo){
             case "Caminhão": {
-                fetch(`http://localhost:3000/api/maquinas/cadastro`, {
+                fetch(`${link}/api/maquinas/cadastro`, {
                     method: 'POST',
                     body: JSON.stringify({...maqCaminhao})
                 }).then(resp => resp.json()).then(result => setMaquinaAdicionada(result))

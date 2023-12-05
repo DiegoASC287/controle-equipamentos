@@ -3,6 +3,7 @@ import ModeloItemEAPApelido from '../model/ModeloItemEAPApelido'
 import { useEffect, useState } from 'react'
 import {BiChevronDown} from 'react-icons/bi'
 import {AiOutlineSearch} from 'react-icons/ai'
+import link from '@/app/pathspers'
 
 export default function DropEapApelido(props:{selecionar:
      (item:ModeloItemEAPApelido) => void, 
@@ -15,7 +16,7 @@ export default function DropEapApelido(props:{selecionar:
     const [selecionado, setSelecionado] = useState<ModeloItemEAPApelido>()
     const [aberto, setAberto] = useState<boolean>(false)
     useEffect(() => {
-        fetch(`http://localhost:3000/api/maquinas/associacaoatividade?id=${props.maquinaId}`, {
+        fetch(`${link}/api/maquinas/associacaoatividade?id=${props.maquinaId}`, {
                 cache: 'no-store'
             })
             .then(item => item.json()).then(eap => {

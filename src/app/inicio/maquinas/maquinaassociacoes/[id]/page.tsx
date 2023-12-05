@@ -6,6 +6,7 @@ import TipoAtividade from "@/model/TipoAtividade"
 import { IconX } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 import LoadingCircular from '@/components/loadings/LoadingCircular'
+import link from "@/app/pathspers"
 
 interface PageAssociacoesProps{
     params: {id:string}
@@ -28,7 +29,7 @@ export default function PageAssociacoes({
 
     function adicionarAtribuicoes(atribuicao: ItemAssociacaoEapModel){
         if(atribuicoes){
-            fetch(`http://localhost:3000/api/maquinas/associacaoatividade`, {
+            fetch(`${link}/api/maquinas/associacaoatividade`, {
                     method: 'POST',
                     body: JSON.stringify(atribuicao)
                 }).then(resp => resp.json()).then(result => {
@@ -43,7 +44,7 @@ export default function PageAssociacoes({
         buscar_atividade_id()
     }, [selectTipo])
     function buscarTipos(){
-        fetch(`http://localhost:3000/api/maquinas/tiposatividade`, {
+        fetch(`${link}/api/maquinas/tiposatividade`, {
                     method: 'GET', cache: 'no-store'
                 }).then(resp => resp.json()).then(result => {
                     setListaTipos(result)})
@@ -57,7 +58,7 @@ export default function PageAssociacoes({
         }}
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/maquinas/consulta?id=${params.id}`)
+        fetch(`${link}/api/maquinas/consulta?id=${params.id}`)
         .then(res => res.json())
         .then(maquinaRes => setMaquina(maquinaRes))
         buscarAtribuicoes()
@@ -67,7 +68,7 @@ export default function PageAssociacoes({
     }, [])
 
     function buscarAtribuicoes(){
-        fetch(`http://localhost:3000/api/maquinas/associacaoatividade?id=${params.id}`, {cache: 'no-store'})
+        fetch(`${link}/api/maquinas/associacaoatividade?id=${params.id}`, {cache: 'no-store'})
         .then(res => res.json())
         .then(atribuicoesRes => {
             console.log(atribuicoesRes)
@@ -75,7 +76,7 @@ export default function PageAssociacoes({
     }
 
     function deletarAtribuicao(id:number){
-        fetch(`http://localhost:3000/api/maquinas/associacaoatividade?id=${id}`, {cache: 'no-store', method: "DELETE"})
+        fetch(`${link}/api/maquinas/associacaoatividade?id=${id}`, {cache: 'no-store', method: "DELETE"})
         .then(res => res.json())
         .then(atribuicoesRes => {
             setAtribuicoes(atribuicoes.filter(e => e.id !== atribuicoesRes.id))})

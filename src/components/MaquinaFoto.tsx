@@ -1,4 +1,5 @@
 'use client'
+import link from "@/app/pathspers"
 interface MaquinaFotoProps{
     id: string
 }
@@ -10,7 +11,7 @@ import { useEffect, useState } from "react"
 export default function MaquinaFoto(props: MaquinaFotoProps){
     const [maquina, setMaquina] = useState<Maquina>()
     useEffect(()=> {
-        fetch(`http://localhost:3000/api/maquinas?id=${props.id}`, {
+        fetch(`${link}/api/maquinas?id=${props.id}`, {
             cache: 'no-store'
         })
         .then(item => item.json()).then(maq => setMaquina(maq))

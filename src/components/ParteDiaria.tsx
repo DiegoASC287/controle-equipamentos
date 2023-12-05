@@ -5,6 +5,7 @@ import FormParteDiaria from "./FormParteDiaria"
 import TabelaPartesDiarias from "./TabelaPartesDiarias"
 import { Maquina } from "@prisma/client"
 import Calendario from "./Calendario"
+import link from "@/app/pathspers"
 
 interface ParteDiariaProps{
     params:{id:string}
@@ -20,14 +21,14 @@ export default function ParteDiaria({params}: ParteDiariaProps){
     const [totalInterferencias, setTotalInterferencias] = useState<number>(0)
     
     useEffect(()=> {
-        fetch(`http://localhost:3000/api/maquinas/addatividade?id=${params.id}`, {
+        fetch(`${link}/api/maquinas/addatividade?id=${params.id}`, {
             cache: 'no-store'
         })
         .then(item => item.json()).then(tabela => {
             setTabelaPD(tabela)})
     }, [])   
     useEffect(()=> {
-        fetch(`http://localhost:3000/api/maquinas/consultaapenasmaquina?id=${params.id}`, {
+        fetch(`${link}/api/maquinas/consultaapenasmaquina?id=${params.id}`, {
             cache: 'no-store'
         })
         .then(item => item.json()).then(maq => {

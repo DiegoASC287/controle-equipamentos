@@ -4,6 +4,7 @@ import { IconAlertTriangleFilled, IconCheck, IconRotateClockwise2 } from "@table
 import Image from "next/image"
 import Link from "next/link";
 import MostradorUnidade from "./MostradorUnidade";
+import link from "@/app/pathspers";
 interface MaquinaProps{
     maquina: Maquina
 }
@@ -12,7 +13,7 @@ export default function MaquinaItem(props: MaquinaProps){
     return (
         
         <Link href={{
-            pathname: `/inicio/maquinas/maquina/${maquina.id}`}} >
+            pathname: `${link}/inicio/maquinas/maquina/${maquina.id}`}} >
      
         <div className={`
         flex flex-col border rounded-lg p-1

@@ -3,6 +3,7 @@ import ModeloItemEAP from '../model/ModeloItemEAP'
 import { useEffect, useState } from 'react'
 import {BiChevronDown} from 'react-icons/bi'
 import {AiOutlineSearch} from 'react-icons/ai'
+import link from '@/app/pathspers'
 
 export default function DropEap(props:{selecionar: (item:string) => void, dimTexto:number}){
 
@@ -12,7 +13,7 @@ export default function DropEap(props:{selecionar: (item:string) => void, dimTex
     const [selecionado, setSelecionado] = useState<ModeloItemEAP>()
     const [aberto, setAberto] = useState<boolean>(false)
     useEffect(() => {
-        fetch(`http://localhost:3000/api/eap/lerecadastrar`, {
+        fetch(`${link}/api/eap/lerecadastrar`, {
                 cache: 'no-store'
             })
             .then(item => item.json()).then(eap => {

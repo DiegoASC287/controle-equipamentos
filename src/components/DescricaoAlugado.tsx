@@ -4,6 +4,7 @@ import Celula from "./Celula";
 import Maquina from "@/model/Maquina";
 import CelulaAluguelInfo from "./CelulaAluguelInfo";
 import Link from 'next/link'
+import link from "@/app/pathspers";
 interface DescricaoAlugadoProps{
     id: number | undefined
 }
@@ -12,7 +13,7 @@ export default function DescricaoAlugado(props: DescricaoAlugadoProps){
     const [maquina, setMaquina] = useState<Maquina>()
     const [carregando, setCarregando] = useState<boolean>(true)
     useEffect(()=> {
-        fetch(`http://localhost:3000/api/maquinas/consulta?id=${props.id}`, 
+        fetch(`${link}/api/maquinas/consulta?id=${props.id}`, 
         {
             cache:'no-store'
         })

@@ -1,6 +1,7 @@
 'use client'
 import LinhaTabPartDiaria from "@/model/LinhaTabPartDiaria"
 import { useEffect, useState } from "react"
+import link from "@/app/pathspers"
 
 interface TabelaPartesDiariasProps{
     maquinaId: number | undefined
@@ -13,7 +14,7 @@ export default function TabelaPartesDiarias(props: TabelaPartesDiariasProps){
     const [tabelaPD, setTabelaPD] = useState<LinhaTabPartDiaria[]>([])
     const [carregando, setCarregando] = useState(true)
     useEffect(()=> {
-        fetch(`http://localhost:3000/api/maquinas/addatividade?id=${props.maquinaId}`, {
+        fetch(`${link}/api/maquinas/addatividade?id=${props.maquinaId}`, {
             cache: 'no-store'
         })
         .then(item => item.json()).then(tabela => {
