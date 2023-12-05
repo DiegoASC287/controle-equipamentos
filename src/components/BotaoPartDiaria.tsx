@@ -6,7 +6,10 @@ id: string
 
 export default function BotaoPartDiaria(props: BotaoPartDiariaProps){
     return (
-        <Link href={`/inicio/maquinas/parte-diaria/${props.id}`}>
+        <Link href={{pathname: `/inicio/maquinas/parte-diaria`,
+        query: {
+            id: props.id
+        }}}>
         <button>
             <div
             className={`fixed right-2
