@@ -5,6 +5,7 @@ import MaquinaFoto from "@/components/MaquinaFoto";
 import BotaoPartDiaria from "@/components/BotaoPartDiaria";
 import link from "@/app/pathspers";
 import { useSearchParams } from "next/navigation";
+import {useEffect} from 'react'
 
 
 interface PageDetailProps{
@@ -24,6 +25,9 @@ export default async function PaginaMostrarMaquina(){
     if (id){
         const maquina = await getData(id)
     }
+    
+
+    
         
     return (
         <div className="bg-zinc-50 h-screen w-full ">

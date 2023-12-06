@@ -8,6 +8,10 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'source.unsplash.com',
         },
+        {
+          protocol: 'https',
+          hostname: 'fpzrysseklyzsppt.public.blob.vercel-storage.com',
+        }
       ],
     },
   }

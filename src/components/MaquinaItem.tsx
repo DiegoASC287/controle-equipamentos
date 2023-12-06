@@ -26,10 +26,13 @@ export default function MaquinaItem(props: MaquinaProps){
         hover:border-3 hover:border-black
         `}>
             <div className="relative">
-            <Image src={maquina.imagem || "/"} width={250} height={250} alt="Imagem"/>
+            <div className="relative w-[200px] h-[200px] top-1">
+
+            <Image src={maquina.imagem || "/"} fill alt="Imagem"/>
+            </div>
             <MostradorUnidade valor={`${maquina.contador}`} unidade={maquina.unidade}/>
             </div>
-            <div className="bg-gray-300 w-full flex justify-center">{maquina.origem}</div>
+            <div className="bg-gray-300 w-full flex justify-center z-10">{maquina.origem}</div>
             <div className="flex pt-2 px-2 h-full w-full justify-between">
                 <div className="font-bold text-left">{maquina.nome}</div>
                 <div className={`flex px-1 justify-end items-end h-full ${maquina.quebrada ? "text-red-500" :

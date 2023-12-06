@@ -1,0 +1,231 @@
+﻿Caminhão Munck;Verificar o nível de óleo do motor;10;h
+Caminhão Munck;Verificar o nível de fluido do radiador;10;h
+Caminhão Munck;Verificar o nível de óleo da direção hidráulica;10;h
+Caminhão Munck;Drenar a água e sedimentos do reservatório de ar comprimido;10;h
+Caminhão Munck;Encher o tanque de combustível e do Arla 32;10;h
+Caminhão Munck;Verificar o nível de óleo da caixa de marchas;50;h
+Caminhão Munck;Verificar o nível de óleo dos diferenciais;50;h
+Caminhão Munck;Verificar o nível de óleo do hidráulico do Munck;50;h
+Caminhão Munck;Drenar água do filtro sedimentador do combustível;50;h
+Caminhão Munck;Verificar o nível do eletrólito das baterias e limpar os terminais;50;h
+Caminhão Munck;Inspecionar e limpar o filtro de ar primário;50;h
+Caminhão Munck;Verificar o nível de óleo do acionamento da embreagem;50;h
+Caminhão Munck;Lubrificar os jumelos, os pinos e buchas das molas;50;h
+Caminhão Munck;Lubrificar os terminais da barra de direção;50;h
+Caminhão Munck;Lubrificar as mangas de eixo;50;h
+Caminhão Munck;Lubrificar as cruzetas dos eixos cardans;50;h
+Caminhão Munck;Lubrificar todos pinos graxeiros da articulação do Munck;50;h
+Caminhão Munck;Lubrificar as catracas de freios de todas as rodas;50;h
+Caminhão Munck;Coletar óleo do motor para análise;300;h
+Caminhão Munck;Trocar filtros de ar condicionado e filtro de ar cabine;300;h
+Caminhão Munck;Trocar filtro de ar primário;300;h
+Caminhão Munck;Lubrificar cruzeta da coluna de direção;300;h
+Caminhão Munck;Trocar filtros de combustível e separador de água;300;h
+Caminhão Munck;Limpar respiros do motor, caixa de marchas, diferenciais;300;h
+Caminhão Munck;Trocar óleo lubrificante do motor e filtro;300;h
+Caminhão Munck;Coletar óleo da caixa de marchas para análise;600;h
+Caminhão Munck;Coletar óleo dos diferenciais para análise;600;h
+Caminhão Munck;Trocar o filtro secador do sistema de ar comprimido;600;h
+Caminhão Munck;Trocar filtro de ar secundário do motor;1200;h
+Caminhão Munck;Trocar óleo dos diferenciais;1200;h
+Caminhão Munck;Trocar o filtro de óleo da direção hidráulica;1200;h
+Caminhão Munck;Trocar filtro hidráulico do Munck;1200;h
+Caminhão Munck;Trocar óleo do sistema hidráulico do Munck;2400;h
+Caminhão Munck;Trocar líquido de arrefecimento do radiador do motor;2400;h
+Caminhão Munck;Trocar óleo da direção hidráulica;2400;h
+Escavadeira hidráulica;Drenar água do separador de água e de água extra;10;h
+Escavadeira hidráulica;Verificar o nível do eletrólito da bateria;10;h
+Escavadeira hidráulica;Verificar o nível de óleo do motor;10;h
+Escavadeira hidráulica;Verificar o nível de óleo hidráulico;10;h
+Escavadeira hidráulica;Verificar o nível do refrigerante;10;h
+Escavadeira hidráulica;Inspecionar e ajustar folga das esteiras;50;h
+Escavadeira hidráulica;Drenar sedimentos do tanque de combustível;50;h
+Escavadeira hidráulica;Lubrificar o pino da extremidade da haste do cilíndro da caçamba;50;h
+Escavadeira hidráulica;Lubrificar o pino da extremidade da haste do cilíndro da lança;50;h
+Escavadeira hidráulica;Lubrificar o pino da extremidade da haste do cilíndro do braço;50;h
+Escavadeira hidráulica;Lubrificar o pino de montagem da lança;50;h
+Escavadeira hidráulica;Lubrificar o pino de montagem do cilíndro da caçamba;50;h
+Escavadeira hidráulica;Lubrificar o pino de montagem do cilíndro da lança;50;h
+Escavadeira hidráulica;Lubrificar o pino de montagem do cilíndro do braço;50;h
+Escavadeira hidráulica;Lubrificar o pino entre a caçamba e a haste de conexão;50;h
+Escavadeira hidráulica;Lubrificar o pino entre a haste de conexão e a ariticulação;50;h
+Escavadeira hidráulica;Lubrificar o pino entre a lança e o braço;50;h
+Escavadeira hidráulica;Lubrificar o pino entre o braço e a caçamba;50;h
+Escavadeira hidráulica;Verificar o níveo de óleo na caixa de acionamento das esteiras;50;h
+Escavadeira hidráulica;Verificar o nível de óleo da unidade de acionamento do giro;50;h
+Escavadeira hidráulica;Coletar amostra de óleo motor;250;h
+Escavadeira hidráulica;Drenar e reabastecer o óleo dos redutores LD e LE;250;h
+Escavadeira hidráulica;Drenar e reabastecer o óleo da unidade de acionamento do giro;250;h
+Escavadeira hidráulica;Drenar e reabastecer o óleo do motor;250;h
+Escavadeira hidráulica;Lubrificar o mancal de engrenagem de giro;250;h
+Escavadeira hidráulica;Substituir filtro de combustível;250;h
+Escavadeira hidráulica;Substituir elemento separador de água;250;h
+Escavadeira hidráulica;Substituir elemento separador de água extra;250;h
+Escavadeira hidráulica;Substituir filtro de ar da cabine;250;h
+Escavadeira hidráulica;Substituir filtro de ar primário;250;h
+Escavadeira hidráulica;Substituir filtro do ar condicionado;250;h
+Escavadeira hidráulica;Substituir filtro de óleo do motor;250;h
+Escavadeira hidráulica;Coletar amostra de óleo do giro;500;h
+Escavadeira hidráulica;Coletar amostra de óleo dos redutores LD e LE;500;h
+Escavadeira hidráulica;Limpar o radiador e todas as colmeias do condensador;500;h
+Escavadeira hidráulica;Coletar amostra de óleo hidráulico;1000;h
+Escavadeira hidráulica;Verificar o banho de óleo de giro;1000;h
+Escavadeira hidráulica;Lubrificar as dobradiças da porta da cabine;1000;h
+Escavadeira hidráulica;Substituir o filtro de retorno do óleo hidráulico;1000;h
+Escavadeira hidráulica;Substituir o filtro secundário do purificador de ar;1000;h
+Escavadeira hidráulica;Substituir o filtro de drenagem do óleo hidráulico;1000;h
+Escavadeira hidráulica;Substituir o filtro do servocomando hidráulico;1000;h
+Escavadeira hidráulica;Drenar e reabastecer o liquido refrigerante;2000;h
+Escavadeira hidráulica;Drenar e reabastecer o óleo hidráulico;2000;h
+Escavadeira hidráulica;Limpar a tela de filtragem (tanque de óleo hidráulico);2000;h
+Escavadeira hidráulica;Substituir o elemento do respiro de ar do tanque de combustível;2000;h
+Escavadeira hidráulica;Substituir o elemento do respiro de ar do tanque hidráulico;2000;h
+Caminhão Pipa;Verificar o nível de óleo do motor;10;h
+Caminhão Pipa;Verificar o nível de fluido do radiador;10;h
+Caminhão Pipa;Verificar o nível de óleo da direção hidráulica;10;h
+Caminhão Pipa;Drenar a água e sedimentos do reservatório de ar comprimido;10;h
+Caminhão Pipa;Encher o tanque de combustível e do Arla 32;10;h
+Caminhão Pipa;Verificar o nível de óleo da caixa de marchas;50;h
+Caminhão Pipa;Verificar o nível de óleo dos diferenciais e planetários das rodas;50;h
+Caminhão Pipa;Drenar água do filtro sedimentador do combustível;50;h
+Caminhão Pipa;Verificar o nível do eletrólito das baterias e limpar os terminais;50;h
+Caminhão Pipa;Verificar o funcionamento do indicador de restrição de ar;50;h
+Caminhão Pipa;Verificar o nível de óleo do acionamento da embreagem;50;h
+Caminhão Pipa;Lubrificar as mangas de eixo;50;h
+Caminhão Pipa;Lubrificar as cruzetas dos eixos cardans do caminhão e implemento;50;h
+Caminhão Pipa;Limpar os filtros do sistema de ar condicionado;50;h
+Caminhão Pipa;Lubrificar as catracas de freios de todas as rodas;50;h
+Caminhão Pipa;Verificar o nível de óleo do mancal da bomba de água do pipa;50;h
+Caminhão Pipa;Verificar o nível de óleo da caixa de acionamento da bomba D' água do implemento;50;h
+Caminhão Pipa;Coletar óleo do motor para análise;300;h
+Caminhão Pipa;Trocar filtros de combustível e separador de água;300;h
+Caminhão Pipa;Trocar filtros de ar condicionado e filtro de ar cabine;300;h
+Caminhão Pipa;Trocar óleo lubrificante do motor e filtro;300;h
+Caminhão Pipa;Lubrificar cruzeta da coluna de direção;300;h
+Caminhão Pipa;Trocar filtro de ar primário;300;h
+Caminhão Pipa;Limpar respiros do motor, caixa de marchas, diferenciais;300;h
+Caminhão Pipa;Coletar óleo da caixa de marchas para análise;600;h
+Caminhão Pipa;Coletar óleo dos diferenciais para análise;600;h
+Caminhão Pipa;Trocar o filtro secador do sistema de ar comprimido;600;h
+Caminhão Pipa;Trocar o filtro de óleo da caixa de marchas automatizada;600;h
+Caminhão Pipa;Trocar o óleo do mancal da bomba de água do pipa;600;h
+Caminhão Pipa;Trocar filtro de ar secundário do motor;1200;h
+Caminhão Pipa;Trocar óleo da caixa de marchas;1200;h
+Caminhão Pipa;Trocar óleo dos diferenciais;1200;h
+Caminhão Pipa;Trocar filtro e óleo do retarder;1200;h
+Caminhão Pipa;Trocar o filtro de óleo da direção hidráulica;1200;h
+Caminhão Pipa;Trocar óleo da direção hidráulica;2400;h
+Caminhão Pipa;Trocar o líquido de arrefecimento do radiador do motor;2400;h
+Mini escavadeira;Verificar o nível de óleo do motor;10;h
+Mini escavadeira;Verificar o nível de fluido do radiador;10;h
+Mini escavadeira;Verificar o nível de óleo do sistema hidráulico;10;h
+Mini escavadeira;Verificar o estado dos pneus e calibrar;10;h
+Mini escavadeira;Encher o tanque de combustível;10;h
+Mini escavadeira;Lubrificar os pinos dos braços de elevação, e de inclinação da caçamba;10;h
+Mini escavadeira;Verificar o nível de óleo das caixas de corrente;50;h
+Mini escavadeira;Drenar água do filtro sedimentador do combustível;50;h
+Mini escavadeira;Inspecionar e limpar o filtro de ar primário;50;h
+Mini escavadeira;Limpar os radiadores (soprar);50;h
+Mini escavadeira;Limpar os filtros do sistema de ar condicionado;50;h
+Mini escavadeira;Trocar óleo lubrificante do motor e filtro;250;h
+Mini escavadeira;Trocar filtro de ar primário do motor;250;h
+Mini escavadeira;Trocar filtros de combustível e separador de água;250;h
+Mini escavadeira;Trocar os filtros do sistema de ar condicionado e filtro de ar da cabine;250;h
+Mini escavadeira;Verificar folga dos pinos, buchas e arruelas do braço de elevação e inclinação da caçamba;250;h
+Mini escavadeira;Coletar óleo do motor para análise;250;h
+Mini escavadeira;Verificar a tensão das correntes de tração;250;h
+Mini escavadeira;Coletar óleo das caixas de correntes;500;h
+Mini escavadeira;Trocar o óleo das caixas de correntes;500;h
+Mini escavadeira;Lubrificar os cubos das rodas (01 ponto em cada cubo);500;h
+Mini escavadeira;Coletar óleo do sistema hidráulico para análise;1000;h
+Mini escavadeira;Trocar filtro de ar secundário do motor;1000;h
+Mini escavadeira;Trocar os filtros do sistema hidráulico;1000;h
+Mini escavadeira;Trocar óleo do sistema hidráulico;2000;h
+Mini escavadeira;Trocar filtro de respiro do tanque hidráulico;2000;h
+Mini escavadeira;Ajustar a folga da válvulas do motor;2000;h
+Mini escavadeira;Trocar o líquido de arrefecimento do radiador do motor;2000;h
+Pá carregadeira;Aplicar graxa nos pontos de lubrificação;10;h
+Pá carregadeira;Encher o tanque de combustível;10;h
+Pá carregadeira;Verificar e drenar o separador de água;10;h
+Pá carregadeira;Verificar o líquido de arrefecimento do radiador;10;h
+Pá carregadeira;Verificar o nível de óleo da transmissão;10;h
+Pá carregadeira;Verificar o nível de óleo do sistema hidráulico;10;h
+Pá carregadeira;Verificar o nível de óleo do motor;10;h
+Pá carregadeira;Verificar o nível de óleo dos eixos dianteiro e traseiro;50;h
+Pá carregadeira;Coletar óleo do motor para análise;50;h
+Pá carregadeira;Trocar o filtro de ar primário do motor;50;h
+Pá carregadeira;Trocar o filtro de combustível;50;h
+Pá carregadeira;Trocar o filtro de óleo do motor;50;h
+Pá carregadeira;Trocar óleo do motor;250;h
+Pá carregadeira;Trocar filtros de ar condicionado e filtro de ar cabine;250;h
+Pá carregadeira;Coletar amostras de óleo da transmissão;250;h
+Pá carregadeira;Coletar amostra de óleo dos eixos dianteiro e traseiros;250;h
+Pá carregadeira;Coletar amostra de óleo hidráulico;500;h
+Pá carregadeira;Drenar água e sedimentos do tanque de combustível;500;h
+Pá carregadeira;Lubrificar eixos cardans e o rolamento de apoio;500;h
+Pá carregadeira;Drenar água e sedimentos do tanque hidráulico;1000;h
+Pá carregadeira;Lubrificar mancal inferior da junta do chassi;1000;h
+Pá carregadeira;Trocar filtro de ar secundário;1000;h
+Pá carregadeira;Limpar tela de sucção do óleo da transmissão;1000;h
+Pá carregadeira;Trocar o filtro de óleo da transmissão;1000;h
+Pá carregadeira;Trocar o filtro de respiro da transmissão;1000;h
+Pá carregadeira;Trocar filtro de respiro do sistema hidráulico;1000;h
+Pá carregadeira;Trocar filtro de respiro do tanque de combustível;1000;h
+Pá carregadeira;Trocar o filtro de retorno do tanque hidráulico;2000;h
+Pá carregadeira;Trocar o óleo da transmissão;2000;h
+Pá carregadeira;Trocar o óleo dos eixos dianteiro e traseiro;2000;h
+Pá carregadeira;Trocar o óleo hidráulico;2000;h
+Pá carregadeira;Trocar os filtros de respiro dos eixos dianteiro e traseiro;2000;h
+Motoniveladora;Lubrifique o pinhão do circulo;10;h
+Motoniveladora;Lubrifique os furos do pino de travamento da sela;10;h
+Motoniveladora;Verifique o nível de óleo da transmissão;10;h
+Motoniveladora;Verifique o nível de óleo do motor;10;h
+Motoniveladora;Verifique o nível de óleo do tanque hidráulico;10;h
+Motoniveladora;Verifique o nível do tanque de compensação do liquido de arrefecimento do motor;10;h
+Motoniveladora;Lubrifique a esfera da estrutura de tração;50;h
+Motoniveladora;Lubrifique as extremidades do tirante;50;h
+Motoniveladora;Lubrifique o cilindro de deslocamento lateral do circulo;50;h
+Motoniveladora;Lubrifique o escarificador de montagem intermediaria- se equipada;50;h
+Motoniveladora;Lubrifique o escarificador montado na dianteira ou da lamina do dozer-se equipada;50;h
+Motoniveladora;Lubrifique o grupo de elevação dianteiro estilo Balderson - se equipada;50;h
+Motoniveladora;Lubrifique o pino da direção do eixo dianteiro;50;h
+Motoniveladora;Lubrifique o pino de oscilação do eixo dianteiro;50;h
+Motoniveladora;Lubrifique o pino de travamento da sela;50;h
+Motoniveladora;Lubrifique o pivô da barra de inclinação do eixo dianteiro;50;h
+Motoniveladora;Lubrifique os cilindros de direção;50;h
+Motoniveladora;Lubrifique os cilindros de elevação;50;h
+Motoniveladora;Lubrifique os pivôs da articulação da estrutura;50;h
+Motoniveladora;Verifique o liquido de arrefecimento;50;h
+Motoniveladora;Verifique o nível do eletrólito da bateria;50;h
+Motoniveladora;Coletar uma amostra de óleo do motor;250;h
+Motoniveladora;Drene e reabasteça o óleo do motor e substitua o filtro;250;h
+Motoniveladora;Substitua filtro de ar da cabine e ar condicionado;250;h
+Motoniveladora;Substitua filtro de ar primario;250;h
+Motoniveladora;Substitua o filtro de combustível e separador de agua auxiliar-se equipado;250;h
+Motoniveladora;Substitua o filtro de combustível final;250;h
+Motoniveladora;Substitua o filtro primário de combustível e o separador de agua;250;h
+Motoniveladora;Coletar amostra de óleo da transmissão;500;h
+Motoniveladora;Coletar amostra de óleo do diferencial;500;h
+Motoniveladora;Coletar amostra de óleo dos tandens LD e LE;500;h
+Motoniveladora;Lubrifique os pivôs do tandem;500;h
+Motoniveladora;Substitua o filtro de óleo da transmissão;500;h
+Motoniveladora;Verifique o nível de óleo da caixa de engrenagens do circulo;500;h
+Motoniveladora;Verifique o nível de óleo do eixo;500;h
+Motoniveladora;Verifique o nível de óleo do tandem;500;h
+Motoniveladora;Verifique o nível do óleo do cubo da 6WD-se equipada;500;h
+Motoniveladora;Coletar óleo hidraulico;1000;h
+Motoniveladora;Drene e reabasteça o óleo do cubo da 6WD-se equipada;1000;h
+Motoniveladora;Drene e reabasteça o óleo do eixo;1000;h
+Motoniveladora;Drene e reabasteça o óleo do tandem;1000;h
+Motoniveladora;Drene e reabasteça o óleo transmissão;1000;h
+Motoniveladora;Substitua filtro de ar secundario;1000;h
+Motoniveladora;Substitua o filtro de óleo hidráulico;1000;h
+Motoniveladora;Substitua o filtro de óleo do eixo;1000;h
+Motoniveladora;Substitua o filtro do respiro de combustível de enchimento rápido - se equipada;1000;h
+Motoniveladora;Substitua o respiro do tanque de combustível;1000;h
+Motoniveladora;Drene e reabasteça o óleo da caixa de engrenagens do circulo;2000;h
+Motoniveladora;Drene e reabasteça o óleo do tanque hidráulico;2000;h
+Motoniveladora;Limpe a tela de entrada da bomba da transmissão;2000;h
+Motoniveladora;Limpe o tubo de ventilação do cárter do motor;2000;h
+Motoniveladora;Substitua o filtro do respiro do eixo traseiro;2000;h
+Motoniveladora;Substitua o filtro do respiro do tanque hidráulico;2000;h

@@ -25,24 +25,22 @@ export async function POST(request: Request) {
                         create:{
                             ...corpo.aluguelInfo
                         },
-                    },planoManutencao: {
+                    },
+                    planoManutencao: {
                         create: corpo.planoManutencao
                     },
-                    caminhao: {
-                        create: corpo.caminhao ? {
-                            alimentacao: corpo.caminhao?.alimentacao,
-                            foto_documento: corpo.caminhao?.foto_documento,
-                            foto_habilitacao: corpo.caminhao?.foto_habilitacao,
-                            placa: corpo.caminhao?.placa,
-                            volume_cacamba: corpo.caminhao?.volume_cacamba,
+                    maquina_pesada: {
+                        create: corpo.maqPesada ? {
+                            foto_documento: corpo.maqPesada?.foto_documento,
+                            foto_habilitacao: corpo.maqPesada?.foto_habilitacao,
+                            identificador: corpo.maqPesada?.identificador,
+                            dimensao_trabalho: corpo.maqPesada?.volume_trabalho,
+                            data_vencimento_documento: corpo.maqPesada?.data_vencimento_documento,
+                            data_vencimento_habilitacao: corpo.maqPesada?.data_vencimento_habilitacao
                         } : undefined
                     },tipo: corpo.tipo,
-                    
                 }
-                
             })
-            
-            
             return NextResponse.json(mauqina)
         } catch (err){
             return NextResponse.json({err: err}, {status: 401})

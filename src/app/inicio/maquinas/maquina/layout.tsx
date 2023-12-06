@@ -4,6 +4,8 @@ interface MaquinaLayoutProps{
     children: any
 }
 export default function MaquinaLayout(props: MaquinaLayoutProps){
+
+    
     return (
         <div className="w-full">
             <MaquinaProvider>

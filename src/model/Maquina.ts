@@ -1,5 +1,5 @@
 import AluguelInfoProps from "./AluguelInfo"
-import CaminhaoInterf from "./Caminhao"
+import MaquinaPesadaInterf from "./MaqPesada"
 import ItemAssociacaoEapModel from "./ItemAssociacaoEapModel"
 import MaquinaPlanoMan from "./MaquinaPlanoMan"
 import RegistroManutencaoProps from "./RegistroManutencao"
@@ -7,7 +7,7 @@ export default interface Maquina {
     id?: number
     nome?: string
     modelo?: string
-    imagem?: string
+    imagem: string | null
     acaoNecessaria?: boolean
     motivo_quebrada?: string
     emUso?: boolean
@@ -24,6 +24,6 @@ export default interface Maquina {
     unidade?: string
     categoria?: string
     tipo?: string
-    caminhao?: CaminhaoInterf
+    maqPesada?: MaquinaPesadaInterf
     item_associacao?: ItemAssociacaoEapModel[]
 }

@@ -64,7 +64,7 @@ model Maquina {
   aluguelInfo     Alugada?
   atividades      Atividade[]
   planoManutencao PlanoManutencao[]
-  caminhao        Caminhao?
+  maquina_pesada  MaquinaPesada?
   manutencoes     Manutencao[]
   item_associacao ItemAssociacaoEap[]
 
@@ -178,29 +178,25 @@ model TipoAtividade {
 }
 
 //tabelas de tipos de maquinas
-model Caminhao {
-  id                    Int     @id @default(autoincrement())
-  alimentacao           String?
-  tara                  Float?
-  volume_cacamba        Float?
-  placa                 String?
-  habilitacao_motorista String?
-  foto_habilitacao      String?
-  foto_documento        String?
-  maquina               Maquina @relation(fields: [maquinaId], references: [id])
-  maquinaId             Int     @unique
+model MaquinaPesada {
+  id                          Int       @id @default(autoincrement())
+  alimentacao                 String?
+  dimensao_trabalho           Float?
+  identificador               String?
+  foto_habilitacao            String?
+  data_vencimento_habilitacao DateTime?
+  foto_documento              String?
+  data_vencimento_documento   DateTime?
+  maquina                     Maquina   @relation(fields: [maquinaId], references: [id])
+  maquinaId                   Int       @unique
 
-  @@map("tipo_caminhao")
+  @@map("categoria_maquinas_pesadas")
 }
 
-model Retroescavadeira {
-  id                   Int    @id @default(autoincrement())
-  vol_concha           Float
-  certificado_operador String
-  modelo               String
-  marca                String
-
-  @@map("tipo_retroescavadeira")
+model TemplatePlanoManutencoes {
+  id Int @id @default(autoincrement())
+  tipo_veiculo String
+  manutencao String
+  intervalo Float
+  unidade String
 }
-
-//Falar com gabriela sobre checklist de equipamentos
