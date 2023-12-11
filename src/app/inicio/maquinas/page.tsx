@@ -1,22 +1,44 @@
-import AddMaquina from "@/components/AddMaquina"
+'use client'
 import MaquinaItem from "@/components/MaquinaItem"
 import link from "@/app/pathspers"
+import BarraFiltro from "@/components/BarraFiltro"
+import { useEffect, useState } from "react"
+import FiltroProps from "@/model/FiltroProps"
+import Maquina from "@/model/Maquina"
 
-async function getData() {
-    const testURL = `${link}/api/maquinas` 
-    const data = await fetch(testURL, {cache: 'no-store'})
-    const maquina = await data.json()
-    return maquina
-}
-export default async function PaginaMaquinas(){
-    const maquinas = await(getData())
+export default function PaginaMaquinas(){
+    const [filtro, setFiltro] = useState<FiltroProps | null | undefined>({categoria: "", tipo: "", nome: ""})
+    const [maquinas, setMaquinas] = useState<Maquina[]>()
+    const [listaFiltrada, setListaFiltrada] = useState<Maquina[]>()
+
+    function renderizarMaquinas(){
+        if(filtro){
+            return listaFiltrada?.map((e: any) => <MaquinaItem key={e.id} maquina={e}/> )
+        }else{
+            return maquinas?.map((e: any) => <MaquinaItem key={e.id} maquina={e}/> )
+        }
+    }
     
+    useEffect(() => {
+        fetch(`${link}/api/maquinas`, {cache: 'no-store'}).then(res => res.json()).then(maq => {
+            setMaquinas(maq)
+            setFiltro({categoria: "", tipo: "", nome: ""})})
+    }, [])
+ 
+    function alterarFiltro(filt: FiltroProps){
+        setFiltro(filt)
+    }
+    
+    useEffect(() => {
+        setListaFiltrada(maquinas?.filter(e => e.categoria?.startsWith(filtro ? filtro.categoria : '') &&
+         e.tipo?.startsWith(filtro ? filtro.tipo : '') && e.nome?.toLowerCase().startsWith(filtro ? filtro.nome.toLowerCase() : '')))
+    }, [filtro])
+
     return (
         <div className="h-screen">
-
+            <BarraFiltro setFiltro={alterarFiltro}/>
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 p-3">
-            <AddMaquina/>
-            {maquinas.map((e: any) => <MaquinaItem key={e.id} maquina={e}/>)}
+            {renderizarMaquinas()}
         </div>
         </div>
     )

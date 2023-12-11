@@ -61,7 +61,7 @@ model Maquina {
   alimentacao     String?
   contadorInicial Float?
   tipo            String?
-  aluguelInfo     Alugada?
+  aluguelInfo     Alugada?  
   atividades      Atividade[]
   planoManutencao PlanoManutencao[]
   maquina_pesada  MaquinaPesada?
@@ -183,12 +183,12 @@ model MaquinaPesada {
   alimentacao                 String?
   dimensao_trabalho           Float?
   identificador               String?
-  foto_habilitacao            String?
-  data_vencimento_habilitacao DateTime?
   foto_documento              String?
   data_vencimento_documento   DateTime?
   maquina                     Maquina   @relation(fields: [maquinaId], references: [id])
   maquinaId                   Int       @unique
+  operadorCpf String
+  operador Operador @relation(fields: [operadorCpf], references: [cpf])
 
   @@map("categoria_maquinas_pesadas")
 }
@@ -199,4 +199,30 @@ model TemplatePlanoManutencoes {
   manutencao String
   intervalo Float
   unidade String
+}
+
+model Operador{
+  cpf String @id @unique
+  imagem_url String
+  nome String
+  sobrenome String
+  idade Int
+  maquina MaquinaPesada[]
+  certificacoes CertificacoesOperador[]
+  @@map("operadores")
+}
+
+model CertificacoesOperador {
+  id Int @id @default(autoincrement())
+  numero_certificado String
+  tipo_maquina String
+  url_certificado String
+  data_vencimento DateTime
+  updatedAt DateTime @updatedAt
+  operadorId String
+  status String @default("Pendente")
+  aprovado Boolean @default(false)
+  aprovado_por String?
+  operador Operador @relation(fields: [operadorId], references: [cpf])
+  @@map("certificacoes_operador")
 }

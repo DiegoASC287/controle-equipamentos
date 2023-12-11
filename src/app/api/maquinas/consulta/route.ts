@@ -9,7 +9,10 @@ export async function GET(request: NextRequest) {
             id: id
         }, include:{
             aluguelInfo: true,
-            planoManutencao: true
+            planoManutencao: true,
+            maquina_pesada: {
+                include: {operador: true}
+            }
             
         }
     })

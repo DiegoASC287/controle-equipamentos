@@ -1,6 +1,5 @@
 'use client'
-import {put} from '@vercel/blob'
-import {useEffect, useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import AddAlugado from '@/components/AddAlugado';
 import Maquina from '@/model/Maquina';
 import MaquinaPlanoMan from '@/model/MaquinaPlanoMan';
@@ -12,6 +11,7 @@ import MaquinaPesada from '@/components/tipos/MaqPesada';
 import AluguelInfoProps from '@/model/AluguelInfo';
 import link from '@/app/pathspers';
 import Uploader from '@/components/Uploader';
+import { alimentacaoLista, categorias, tipo, un } from '@/app/constants/constantes';
 
 interface PageDetailProps{
     params: {id:string}
@@ -30,9 +30,8 @@ interface StatusAddProps{
 }
 
 
-const alimentacaoLista = ["", "Diesel", "Gasolina", "Elétrico", "Manual", "Etanol", "Gás"]
 
-export default function PaginaMostrarMaquina({
+export default function PaginaCadastrarMaquina({
     params,
   }: PageDetailProps){
     
@@ -41,7 +40,7 @@ export default function PaginaMostrarMaquina({
     const [equipamento, setEquipamento] = useState<string>("")
     const [modelo, setModelo] = useState<string>("")
     const [unidade, setUnidade] = useState<string>("")
-    const [tipoSelect, setTipo] = useState<string>()
+    const [tipoSelect, setTipo] = useState<string>("")
     const [manutencao, setManutencao] = useState<string>("")
     const [intervalo, setIntervalo] = useState<number>(0)
     const [contador, setContador] = useState<number>(0)
@@ -54,9 +53,6 @@ export default function PaginaMostrarMaquina({
 
     const [maquinaAdicionada, setMaquinaAdicionada] = useState<Maquina>()
 
-    const un = ["Unidade", "mês", 'h', 'km']
-    const tipo = ['','Escavadeira hidráulica', "Mini escavadeira", 'Caminhão Munck', 'Caminhão Pipa', 'Pá carregadeira',"Motoniveladora", 'Outro']
-    const categorias = ["", "Pesada", "Leve", "Equipamento eletrônico"]
 
     function atImg(imagem: any){
         const {url} = imagem
@@ -88,10 +84,6 @@ export default function PaginaMostrarMaquina({
         setMaquinaPesada(maqPesada)
     }
 
-    function carregarImagem(path:string){
-
-    }
-
     function planoManTemp(lista: linhaTemplate[]){
         setPlanoMan(lista.map(e => {
             return {id:e.id, intervalo: e.intervalo, descricao: e.manutencao}}))
@@ -99,22 +91,70 @@ export default function PaginaMostrarMaquina({
 
 
     function addMaquina(maq: Maquina){
-        const maqCaminhao = {...maq, maqPesada:maquinaPesada}
-        switch (maq?.categoria){
-            case "Pesada": {
-                fetch(`${link}/api/maquinas/cadastro`, {
-                    method: 'POST',
-                    body: JSON.stringify({...maqCaminhao})
-                }).then(resp => resp.json()).then(result => {
-                    setMaquinaAdicionada(result)
-                    alert("Máquina adicionada com sucesso!")})
-            
-            }break;
+        const maqPesadaCur = {...maq, maqPesada:maquinaPesada}
+        const erros = []
+
+        if(!maqPesadaCur.imagem){
+            erros.push("Selecione uma imagem para esta máquina")
+        }
+        if(!maqPesadaCur.modelo || maqPesadaCur.modelo?.trim()===""){
+            erros.push("Falta preencher o modelo")
+        }
+        if(!maqPesadaCur.alimentacao || maqPesadaCur.alimentacao?.trim()===""){
+            erros.push("Falta preencher a alimentação")
+        }
+        if(!maqPesadaCur.nome || maqPesadaCur.nome?.trim()===""){
+            erros.push("Falta preencher o nome")
+        }
+        if(!maqPesadaCur.categoria || maqPesadaCur.categoria?.trim() === ""){
+            erros.push("Selecione a categoria!")
+        }
+        if(maqPesadaCur.categoria === "Pesada"){
+        if(!maqPesadaCur.tipo || maqPesadaCur.tipo?.trim()===""){
+            erros.push("Falta selecionar o tipo")
+        }
+        }
+        if(!maqPesadaCur.unidade || maqPesadaCur.unidade?.trim()===""){
+            erros.push("Falta selecionar a unidade de medição da máquina")
+        }if(!maqPesadaCur.origem || maqPesadaCur.origem?.trim()===""){
+            erros.push("Falta selecionar a origem da máquina")
+        }if(!maqPesadaCur.maquina_pesada?.operador){
+            erros.push("Falta selecionar a o operador!")
+        }
+        if(!maqPesadaCur.maqPesada?.identificador ||maqPesadaCur.maqPesada?.identificador?.trim() === ""){
+            erros.push("Falta preencher o identificador da máquina")
+        }
+        if(maqPesadaCur.origem === "Alugado"){
+            if(maqPesadaCur.aluguelInfo?.data_locacao && maqPesadaCur.aluguelInfo?.previsao_entrega){
+                if(maqPesadaCur.aluguelInfo?.data_locacao >= maqPesadaCur.aluguelInfo?.previsao_entrega){
+                    erros.push("Data de locação ou previsão de entrega inválida!")
+                }
+                if(!maqPesadaCur.aluguelInfo.fornecedor 
+                    || maqPesadaCur.aluguelInfo?.fornecedor?.trim()===""){
+                    erros.push("Falta preencher o fornecedor!")}
+            } 
+                
+        }
+
+        if(erros.length ===0){
+
+            switch (maq?.categoria){
+                case "Pesada": {
+                    fetch(`${link}/api/maquinas/cadastro`, {
+                        method: 'POST',
+                        body: JSON.stringify({...maqPesadaCur})
+                    }).then(resp => resp.json()).then(result => {
+                        setMaquinaAdicionada(result)
+                        alert("Máquina adicionada com sucesso!")})
+                
+                }break;
+            }
+        }else{
+
+            alert(erros.reduce((anterior, proximo) => `${anterior + proximo}\n`, "Erros: \n"))
         }
     }
 
-    
-    
     function placeHolderQuant(){
         if(unidade === "h"){
             return "Horímetro"
@@ -125,10 +165,10 @@ export default function PaginaMostrarMaquina({
         }
     }
 
-    function renderizarTipo(){
+    function renderizarTipo(tipo:string | undefined){
         switch (categoria){
             case 'Pesada':{
-                return <MaquinaPesada onChange={atualizarMaquinaPesada}/>
+                return <MaquinaPesada tipo={tipo} onChange={atualizarMaquinaPesada}/>
             } 
         }
     }
@@ -139,7 +179,8 @@ export default function PaginaMostrarMaquina({
     function atualizarDadosAluguel(e:AluguelInfoProps){
             setAluguelInfo(e)
         }
-    
+
+ 
     return (
 
         <div className='flex w-full mt-5 justify-center'>
@@ -169,13 +210,20 @@ export default function PaginaMostrarMaquina({
                 {categorias.map((e, i) => <option key={i}>{e}</option>)}
             </select>
             </div>
-            <div className='flex items-center'>
+            {
+                categoria === 'Pesada' || categoria === "Leve" ? (
+
+                    <div className='flex items-center'>
             <label className='w-1/2'>Tipo</label>
             <select className=" w-1/2 px-1 border-2 mb-1"
                 value={tipoSelect} onChange={e => setTipo(e.target.value)}>
                 {tipo.map((e, i) => <option key={i}>{e}</option>)}
             </select>
             </div>
+                ):(
+                    null
+                )
+            }
             <div className='flex items-center'>
             <label className='w-1/2'>Unidade</label>
             <select className=" px-1 border-2 mb-1 w-1/2"
@@ -197,9 +245,7 @@ export default function PaginaMostrarMaquina({
                 {alimentacaoLista.map((e, i) => <option key={i}>{e}</option>)}
             </select>
             </div>
-            
-            
-            
+
             </div>
         </div>
         <div className='flex flex-col'>
@@ -216,7 +262,7 @@ export default function PaginaMostrarMaquina({
                     
         </div>
         <div className='md:col-span-2 w-full'>
-                    {renderizarTipo()}
+                    {tipoSelect ? renderizarTipo(tipoSelect): null}
         </div>
         <div>
         <div className="mt-2 w-full ">
@@ -273,7 +319,7 @@ export default function PaginaMostrarMaquina({
                 manutencoes: [],
                 nome: equipamento,
                 modelo: modelo,
-                origem: "Alugado",
+                origem: selecionarOrigem,
                 imagem: imagem ? imagem : null,
                 aluguelInfo: aluguelInfo? aluguelInfo : undefined,
                 planoManutencao: planoManutencao.map((plano) => {
@@ -284,6 +330,7 @@ export default function PaginaMostrarMaquina({
                 contadorInicial: contador,
                 categoria: categoria,
                 unidade: unidade,
+                tipo: tipoSelect
                 
         })}>Adicionar máquina</button>
         

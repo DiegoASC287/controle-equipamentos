@@ -1,4 +1,4 @@
-import { IconArrowRight, IconLogin, IconLogout, IconUserCircle } from "@tabler/icons-react";
+import {IconLogin, IconLogout, IconUserCircle } from "@tabler/icons-react";
 import Link from "next/link";
 import Image from "next/image";
 import { getServerSession } from "next-auth/next";

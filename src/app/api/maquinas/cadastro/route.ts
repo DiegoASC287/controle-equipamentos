@@ -1,13 +1,13 @@
 import Maquina from "@/model/Maquina"
 import { NextResponse } from "next/server"
 import prisma from "@/app/lib/prisma"
+import MaquinaSubAtProps from "@/model/MaquinaSubAtProps"
 
 export async function POST(request: Request) {
     const corpo:Maquina = await request.json()
 
     if(corpo.origem == "Alugado"){   
         try{
-            
             const mauqina = await prisma.maquina.create({
                 data:{
                     nome: corpo.nome,
@@ -30,13 +30,16 @@ export async function POST(request: Request) {
                         create: corpo.planoManutencao
                     },
                     maquina_pesada: {
-                        create: corpo.maqPesada ? {
-                            foto_documento: corpo.maqPesada?.foto_documento,
-                            foto_habilitacao: corpo.maqPesada?.foto_habilitacao,
-                            identificador: corpo.maqPesada?.identificador,
-                            dimensao_trabalho: corpo.maqPesada?.volume_trabalho,
-                            data_vencimento_documento: corpo.maqPesada?.data_vencimento_documento,
-                            data_vencimento_habilitacao: corpo.maqPesada?.data_vencimento_habilitacao
+                        create: corpo.maquina_pesada ? {
+                            foto_documento: corpo.maquina_pesada?.foto_documento,
+                            identificador: corpo.maquina_pesada?.identificador?.toString(),
+                            dimensao_trabalho: corpo.maquina_pesada?.dimensao_trabalho,
+                            data_vencimento_documento: corpo.maquina_pesada?.data_vencimento_documento,
+                            operador: {
+                                connect: {
+                                    cpf: corpo.maquina_pesada.operador?.cpf
+                                }
+                            }
                         } : undefined
                     },tipo: corpo.tipo,
                 }
@@ -47,3 +50,4 @@ export async function POST(request: Request) {
         }
 }
 }
+

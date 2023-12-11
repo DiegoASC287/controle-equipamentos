@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/components/Uploader_linha"  ],
   "exclude": [
     "node_modules"
   ]

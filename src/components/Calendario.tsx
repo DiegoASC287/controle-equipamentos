@@ -16,7 +16,7 @@ legenda: string
 export default function Calendario(props:CalendarioProps){
     return (
         <div className="flex flex-col flex-grow">
-            <label className="text-sm w-full bg-transparent pl-2" >{props.legenda}</label>
+            <label className="text-sm w-full bg-transparent pl-2 overflow-visible z-20" >{props.legenda}</label>
             <DateTimePicker 
             clearAriaLabel=""
             clearIcon={null}
