@@ -7,6 +7,12 @@ export async function GET(request: NextRequest) {
     const maquina = await prisma.maquina.findUnique({
         where:{
             id: id
+        }, include: {
+            maquina_pesada: {
+                include: {
+                    operador: true
+                }
+            }
         }
     })
     return NextResponse.json(maquina)

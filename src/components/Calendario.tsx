@@ -11,13 +11,14 @@ onChange: (data:any) => void
 value: Date | undefined
 id: string
 legenda: string
+className?: string
 }
 
 export default function Calendario(props:CalendarioProps){
     return (
-        <div className="flex flex-col flex-grow">
-            <label className="text-sm w-full bg-transparent pl-2 overflow-visible z-20" >{props.legenda}</label>
-            <DateTimePicker 
+        <div className={`flex flex-col flex-grow `}>
+            <label className="text-sm w-full bg-transparent pl-2 z-20" >{props.legenda}</label>
+            <DateTimePicker className={`${props.className}`} 
             clearAriaLabel=""
             clearIcon={null}
             onChange={(date:any) => props.onChange(date)}

@@ -28,4 +28,9 @@ export default interface Maquina {
     operadorCpf?: string
     maquina_pesada?: MaquinaPesadaInterf
     item_associacao?: ItemAssociacaoEapModel[]
+    docVitalicio?:boolean
+    urlDocumento?:string
+    data_documento?: Date
+    status_documento?: string
+    cod_obra?: string
 }

@@ -7,6 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Obra {
+  codigo     String @id
+  nome       String
+  imagem_url String
+}
+
 model Account {
   id                String  @id @default(cuid()) @map("_id")
   userId            String
@@ -47,26 +53,31 @@ model User {
 }
 
 model Maquina {
-  id              Int                 @id @default(autoincrement())
-  nome            String?
-  modelo          String?
-  imagem          String?             @default("https://source.unsplash.com/featured/300x300?backhoe")
-  acaoNecessaria  Boolean             @default(false)
-  quebrada        Boolean             @default(false)
-  motivo_quebrada String?
-  origem          String?
-  contador        Float?
-  categoria       String?
-  unidade         String?
-  alimentacao     String?
-  contadorInicial Float?
-  tipo            String?
-  aluguelInfo     Alugada?  
-  atividades      Atividade[]
-  planoManutencao PlanoManutencao[]
-  maquina_pesada  MaquinaPesada?
-  manutencoes     Manutencao[]
-  item_associacao ItemAssociacaoEap[]
+  id               Int                 @id @default(autoincrement())
+  cod_obra         String?
+  nome             String?
+  modelo           String?
+  imagem           String?             @default("https://source.unsplash.com/featured/300x300?backhoe")
+  acaoNecessaria   Boolean             @default(false)
+  quebrada         Boolean             @default(false)
+  motivo_quebrada  String?
+  origem           String?
+  contador         Float?
+  categoria        String?
+  unidade          String?
+  alimentacao      String?
+  contadorInicial  Float?
+  tipo             String?
+  aluguelInfo      Alugada?
+  atividades       Atividade[]
+  planoManutencao  PlanoManutencao[]
+  maquina_pesada   MaquinaPesada?
+  manutencoes      Manutencao[]
+  item_associacao  ItemAssociacaoEap[]
+  documento        String?
+  data_documento   DateTime?
+  status_documento String?             @default("Pendente")
+  docVitalicio     Boolean?
 
   @@map("maquinas")
 }
@@ -76,10 +87,11 @@ model Manutencao {
   descricao      String?
   tipo           String?
   dataRealizacao DateTime?
-  contador       Float?
+  momento        Float?
   custo          Float?
   Maquina        Maquina?  @relation(fields: [maquinaId], references: [id])
   maquinaId      Int?
+  nfManutencao   String?
 
   @@map("manutencoes")
 }
@@ -102,6 +114,7 @@ model PlanoManutencao {
   maquina   Maquina @relation(fields: [maquinaId], references: [id])
   intervalo Float?
   descricao String?
+  tipo      String?
 
   @@map("planos_manutencao")
 }
@@ -179,50 +192,54 @@ model TipoAtividade {
 
 //tabelas de tipos de maquinas
 model MaquinaPesada {
-  id                          Int       @id @default(autoincrement())
-  alimentacao                 String?
-  dimensao_trabalho           Float?
-  identificador               String?
-  foto_documento              String?
-  data_vencimento_documento   DateTime?
-  maquina                     Maquina   @relation(fields: [maquinaId], references: [id])
-  maquinaId                   Int       @unique
-  operadorCpf String
-  operador Operador @relation(fields: [operadorCpf], references: [cpf])
+  id                        Int       @id @default(autoincrement())
+  alimentacao               String?
+  dimensao_trabalho         Float?
+  identificador             String?
+  foto_documento            String?
+  data_vencimento_documento DateTime?
+  maquina                   Maquina   @relation(fields: [maquinaId], references: [id])
+  maquinaId                 Int       @unique
+  operadorCpf               String
+  operador                  Operador  @relation(fields: [operadorCpf], references: [cpf])
+  artUrl                    String?
+  planoManUrl               String?
 
   @@map("categoria_maquinas_pesadas")
 }
 
 model TemplatePlanoManutencoes {
-  id Int @id @default(autoincrement())
+  id           Int    @id @default(autoincrement())
   tipo_veiculo String
-  manutencao String
-  intervalo Float
-  unidade String
+  manutencao   String
+  intervalo    Float
+  unidade      String
 }
 
-model Operador{
-  cpf String @id @unique
-  imagem_url String
-  nome String
-  sobrenome String
-  idade Int
-  maquina MaquinaPesada[]
+model Operador {
+  cpf           String                  @id @unique
+  imagem_url    String
+  nome          String
+  sobrenome     String
+  idade         Int
+  maquina       MaquinaPesada[]
   certificacoes CertificacoesOperador[]
+
   @@map("operadores")
 }
 
 model CertificacoesOperador {
-  id Int @id @default(autoincrement())
+  id                 Int      @id @default(autoincrement())
   numero_certificado String
-  tipo_maquina String
-  url_certificado String
-  data_vencimento DateTime
-  updatedAt DateTime @updatedAt
-  operadorId String
-  status String @default("Pendente")
-  aprovado Boolean @default(false)
-  aprovado_por String?
-  operador Operador @relation(fields: [operadorId], references: [cpf])
+  tipo_maquina       String
+  url_certificado    String
+  data_vencimento    DateTime
+  updatedAt          DateTime @updatedAt
+  operadorId         String
+  status             String   @default("Pendente")
+  aprovado           Boolean  @default(false)
+  aprovado_por       String?
+  operador           Operador @relation(fields: [operadorId], references: [cpf])
+
   @@map("certificacoes_operador")
 }

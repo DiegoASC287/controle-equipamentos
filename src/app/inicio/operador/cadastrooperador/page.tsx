@@ -2,11 +2,8 @@
 import { cpfMask } from '@/app/functions/cpfMask';
 import { useEffect, useState } from 'react'
 import Maquina from '@/model/Maquina';
-import MaquinaPlanoMan from '@/model/MaquinaPlanoMan';
 import Image from "next/image";
 import { IconCheck, IconClock, IconError404, IconSquareCheck, IconX } from '@tabler/icons-react';
-import MaquinaPesadaInterf from '@/model/MaqPesada';
-import AluguelInfoProps from '@/model/AluguelInfo';
 import link from '@/app/pathspers';
 import Uploader from '@/components/Uploader';
 import {tipo} from '@/app/constants/constantes';
@@ -50,7 +47,6 @@ export default function PaginaCadastroOperador({
     const [numCertTemp, setNumCertTemp] = useState<string | undefined>(undefined)
     const [fileTemp, setFileTempCert] = useState<File | null>()
 
-    const [maquinaAdicionada, setMaquinaAdicionada] = useState<Maquina>()
     const formato = new Intl.DateTimeFormat("pt-BR", {
         day: 'numeric',
         month: 'numeric',
@@ -149,7 +145,6 @@ export default function PaginaCadastroOperador({
             errosOp.push("Insira a idade do operador!")
         }
         
-        console.log(errosOp)
         if(errosOp.length === 0 ){
 
             fetch(`${link}/api/operadorcadastro?cpf=${op.cpf}`, {

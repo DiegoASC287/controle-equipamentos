@@ -11,7 +11,7 @@ export default async function BarraCabecalho(){
         <div className={`h-[50px] flex justify-between bg-red-900 border-b-1 border-zinc-500`}>
             <div className="flex justify-start items-center gap-10 px-2 text-white">
             <Image  src="/imgs/logo.png" alt="Logo" width={200} height={50}/>
-            <Link href={"/inicio"} passHref>
+            <Link href={"/inicio/obras"} passHref>
             <span className="hover:border-b-2 border-white ">Inicio</span>
             </Link>
             <span className="hover:border-b-2 border-white ">Sobre</span>

@@ -5,7 +5,8 @@ import { useEffect, useState } from "react"
 import Calendario from "./Calendario"
 import LinhaTabPartDiaria from "@/model/LinhaTabPartDiaria"
 import { IconArrowBigRight, IconX } from "@tabler/icons-react"
-import { Apontador, Maquina } from "@prisma/client"
+import Maquina from "@/model/Maquina"
+import Apontador from "@/model/Apontador"
 import DropEapApelido from "./DropEapApelido"
 import link from "@/app/pathspers"
 
@@ -207,7 +208,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             <label className="w-full bg-zinc-100" >Apontador responsável</label>
             <select name="motivo" id="motivo" value={apontador} onChange={e => setApontador(e.target.value)}>
                 <option></option>
-                {apontadores?.map((apontador) => <option key={apontador.id}>{`${apontador.id} - ${apontador.nome}`}</option>)}
+                {apontadores?.map((apontador) => <option key={apontador.nome}>{`${apontador.nome}`}</option>)}
             </select>
             </div>
             </div>
@@ -222,9 +223,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             legenda="Data e hora final"/>
             </div>
             <label className="text-sm w-full bg-zinc-100 mt-1" >Operador do equipamento</label>
-            <input type="text" placeholder="Nome do operador da máquina" 
-            className="pl-2 bg-zinc-100 border-b-2 border-zinc-300" value={operador}
-            onChange={e => setOperador(e.target.value)}/>
+            <div className="pl-2 bg-zinc-100 border-b-2 border-zinc-300">{maquina?.maquina_pesada?.operador?.nome} {maquina?.maquina_pesada?.operador?.sobrenome}</div>
             </div>
             <div className="flex flex-col justify-between border-zinc-300 pr-3">
             <div className="flex gap-5">

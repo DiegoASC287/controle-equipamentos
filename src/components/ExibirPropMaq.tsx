@@ -17,7 +17,7 @@ interface ExibirPropMaqProps {
 
 export default function ExibirPropMaq(props: ExibirPropMaqProps) {
     const [maquina, setMaquina] = useState<Maquina>()
-    const [editando, setEditando] = useState<boolean>(true)
+    const [editando, setEditando] = useState<boolean>(false)
     const [operador, setOperador] = useState<OperadorProps | null>()
     const [alteracoes, setAlteracoes] = useState<{operador: boolean, nome: boolean, modelo: boolean}>({nome: false, modelo:false, operador: false})
 

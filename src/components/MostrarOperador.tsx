@@ -34,7 +34,7 @@ export default function MostrarOperador(props: MostrarOperadorProps) {
         </div>
     }
     return (
-        <div className="flex border-dashed border-2 border-zinc-300 rounded-xl overflow-hidden">
+        <div className="flex border-dashed border-2 border-zinc-300 rounded-xl overflow-hidden justify-between">
             <div className="flex gap-3 flex-wrap">
                 <div className="relative">
 
@@ -54,7 +54,7 @@ export default function MostrarOperador(props: MostrarOperadorProps) {
                 </div>
             </div>
             {props.exibirX? (
-            <button className="flex" onClick={e=> props.alterarVisualizacao()}>
+            <button className="flex " onClick={e=> props.alterarVisualizacao()}>
                 <IconX />
             </button>
 

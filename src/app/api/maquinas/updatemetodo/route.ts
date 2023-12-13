@@ -4,7 +4,6 @@ import Maquina from "@/model/Maquina"
 
 
 export async function POST(request: Request){
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     const corpo:Maquina = await request.json()
     try{
         console.log(corpo)

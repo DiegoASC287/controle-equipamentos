@@ -1,14 +1,20 @@
+'use client'
 import Link from "next/link";
 import { IconPencil } from "@tabler/icons-react";
+import { useSearchParams } from "next/navigation";
 interface BotaoPartDiariaProps{
 id: string
 }
 
 export default function BotaoPartDiaria(props: BotaoPartDiariaProps){
+    const search = useSearchParams()
+    const codigo = search.get('codigoobra')
     return (
         <Link href={{pathname: `/inicio/maquinas/parte-diaria`,
         query: {
-            id: props.id
+            id: props.id,
+            codigoobra: codigo
+
         }}}>
         <button>
             <div
@@ -20,7 +26,7 @@ export default function BotaoPartDiaria(props: BotaoPartDiariaProps){
             shadow-md  shadow-slate-400
             `}>
             <IconPencil/>
-            Editar parte diária
+            Parte diária
             </div>
         </button>
                  </Link>

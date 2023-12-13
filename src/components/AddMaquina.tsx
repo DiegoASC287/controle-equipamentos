@@ -1,12 +1,14 @@
 'use client'
 import {  IconPlus, } from "@tabler/icons-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function AddMaquina(){
+    const search = useSearchParams()
+    const codigo = search.get("codigoobra")
     const router = useRouter()
     return (
-        <button onClick={e => router.push(`/inicio/maquinas/maquinacadastro/001`)}
+        <button onClick={e => router.push(`/inicio/maquinas/maquinacadastro/001?codigoobra=${codigo}`)}
          className={`
         flex flex-col border rounded-lg p-1
         border-zinc-200 

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import DropOperador from "../DropOperador"
 import OperadorProps from "@/model/OperadorProps"
 import MostrarOperador from "../MostrarOperador"
+import Uploader_pdf_img from "../Uploader_pdf_img"
 
 
 interface MaquinaPesadaProps{
@@ -15,17 +16,32 @@ export default function MaquinaPesada(props:MaquinaPesadaProps){
     const [maqPesada, setMaqPesada] = useState<MaquinaPesadaInterf>()
     const [operador, setOperador] = useState<OperadorProps | null>(null)
     const [tipo, setTipo] = useState<string|undefined>()
+    const [fileART, setFileART] = useState<File | null>(null)
+    const [imgART, setImgART] = useState<{image: string | null, }>({image: null})
+    const [filePlanoMan, setFilePlanoMan] = useState<File | null>(null)
+    const [imgPlanoMan, setImgPlanoMan] = useState<{image: string | null, }>({image: null})
 
+    function atArquivoART(imagem: {image: string | null, }, file: File | null){
+        setFileART(file)
+        setImgART(imagem)
+    }
+    function atArquivoPlanoMan(imagem: {image: string | null, }, file: File | null){
+        setFilePlanoMan(file)
+        setImgPlanoMan(imagem)
+    }
 
     useEffect(() => {
         props.onChange({
             dimensao_trabalho: maqPesada?.dimensao_trabalho,
             foto_documento: maqPesada?.foto_documento,
             identificador: maqPesada?.identificador,
-            operador: operador
-
+            operador: operador,
+            fileART,
+            imgART,
+            filePlanoMan,
+            imgPlanoMan
         })
-    }, [maqPesada, operador]) 
+    }, [maqPesada, operador, fileART, imgART, imgPlanoMan, filePlanoMan]) 
     function alterarVisualizacao(){
         setOperador(null)
     }
@@ -48,6 +64,7 @@ export default function MaquinaPesada(props:MaquinaPesadaProps){
             return null
         }
     }
+
     return (
         <div className="grid gap-2 md:grid-cols-2 p-2 border-2 border-zinc-100 w-full">
             <div>
@@ -69,6 +86,14 @@ export default function MaquinaPesada(props:MaquinaPesadaProps){
             <input className="px-2 w-1/2 border-2 mb-1" type="text"
             value={maqPesada?.identificador}
             onChange={e => setMaqPesada({...maqPesada, identificador: e.target.value})}/>
+            </div>
+            <div className='flex items-center pt-2'>
+            <label className='w-1/2'>ART</label>
+            <Uploader_pdf_img atualizarImg={atArquivoART}/>
+            </div>
+            <div className='flex items-center pt-2'>
+            <label className='w-1/2'>Plano de manutenção</label>
+            <Uploader_pdf_img atualizarImg={atArquivoPlanoMan}/>
             </div>
             {/*-----*/}
             </div>

@@ -16,7 +16,6 @@ export default async function LayoutPagina({children}: LayoutProps){
             </Link>
             </div>
     ): (<div className='flex'>
-    <BarraLateralHome/>
     <div className='flex-grow'>{children}</div>
     </div>)
 }

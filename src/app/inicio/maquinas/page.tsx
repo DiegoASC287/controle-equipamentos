@@ -5,11 +5,16 @@ import BarraFiltro from "@/components/BarraFiltro"
 import { useEffect, useState } from "react"
 import FiltroProps from "@/model/FiltroProps"
 import Maquina from "@/model/Maquina"
+import { useSearchParams } from "next/navigation"
 
 export default function PaginaMaquinas(){
+    
     const [filtro, setFiltro] = useState<FiltroProps | null | undefined>({categoria: "", tipo: "", nome: ""})
     const [maquinas, setMaquinas] = useState<Maquina[]>()
     const [listaFiltrada, setListaFiltrada] = useState<Maquina[]>()
+
+    const search = useSearchParams()
+    const codigo = search.get("codigoobra")
 
     function renderizarMaquinas(){
         if(filtro){
@@ -20,7 +25,7 @@ export default function PaginaMaquinas(){
     }
     
     useEffect(() => {
-        fetch(`${link}/api/maquinas`, {cache: 'no-store'}).then(res => res.json()).then(maq => {
+        fetch(`${link}/api/maquinas?codigoobra=${codigo}`, {cache: 'no-store'}).then(res => res.json()).then(maq => {
             setMaquinas(maq)
             setFiltro({categoria: "", tipo: "", nome: ""})})
     }, [])

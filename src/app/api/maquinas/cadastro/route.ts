@@ -1,12 +1,11 @@
 import Maquina from "@/model/Maquina"
 import { NextResponse } from "next/server"
 import prisma from "@/app/lib/prisma"
-import MaquinaSubAtProps from "@/model/MaquinaSubAtProps"
 
 export async function POST(request: Request) {
     const corpo:Maquina = await request.json()
 
-    if(corpo.origem == "Alugado"){   
+    if(corpo){   
         try{
             const mauqina = await prisma.maquina.create({
                 data:{
@@ -21,6 +20,7 @@ export async function POST(request: Request) {
                     unidade: corpo.unidade,
                     alimentacao: corpo.alimentacao,
                     categoria: corpo.categoria,
+                    cod_obra: corpo.cod_obra,
                     aluguelInfo: {
                         create:{
                             ...corpo.aluguelInfo
@@ -41,11 +41,13 @@ export async function POST(request: Request) {
                                 }
                             }
                         } : undefined
-                    },tipo: corpo.tipo,
+                    },tipo: corpo.tipo
                 }
             })
+
             return NextResponse.json(mauqina)
         } catch (err){
+            
             return NextResponse.json({err: err}, {status: 401})
         }
 }

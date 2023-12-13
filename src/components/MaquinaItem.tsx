@@ -5,16 +5,19 @@ import Image from "next/image"
 import Link from "next/link";
 import MostradorUnidade from "./MostradorUnidade";
 import link from "@/app/pathspers";
+import { useSearchParams } from "next/navigation";
 interface MaquinaProps{
     maquina: Maquina
 }
 export default function MaquinaItem(props: MaquinaProps){
+    const search = useSearchParams()
+    const codigo = search.get("codigoobra")
     const {maquina} = props
     return (
         
         <Link href={{
             pathname: `${link}/inicio/maquinas/maquina`,
-            query: {id: maquina.id}}} >
+            query: {id: maquina.id, codigoobra: codigo}}} >
      
         <div className={`
         flex flex-col border rounded-lg p-1

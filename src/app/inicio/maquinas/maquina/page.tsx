@@ -20,10 +20,11 @@ interface PageDetailProps {
 export default async function PaginaMostrarMaquina() {
 
     const [maquina, setMaquina] = useState<Maquina>()
-    const [editando, setEditando] = useState<boolean>(true)
+    const [editando, setEditando] = useState<boolean>(false)
     const [carregando, setCarregando] = useState<boolean>(true)
     const search = useSearchParams()
     const id = search.get("id")
+
     const [equipamento, setEquipamento] = useState<OperadorProps | undefined | null>()
 
 
@@ -39,7 +40,7 @@ export default async function PaginaMostrarMaquina() {
     }, [])
 
     return (
-        <div className="bg-zinc-50 h-screen w-full flex justify-center ">
+        <div className="bg-zinc-50 h-full w-full flex justify-center ">
             <div className="w-11/12 bg-zinc-100 rounded-lg mt-5 p-3 shadow-md shadow-zinc-400">
 
                 <div className="flex flex-row p-3 border-b-2 border-zinc-400 w-full">
