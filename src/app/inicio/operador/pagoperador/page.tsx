@@ -31,7 +31,7 @@ export default async function PaginaMostrarMaquina() {
     useEffect(() => {
         fetch(`${link}/api/maquinas/consulta?id=${id}`,
             {
-                cache: 'no-cache'
+                cache: 'no-store'
             })
             .then(item => item.json()).then(maq => {
                 setMaquina(maq)
