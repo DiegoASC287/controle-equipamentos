@@ -7,6 +7,7 @@ export default function PaginaObras(){
     const [maquinas, setObras] = useState<Obra[]>()
     useEffect(() => {
         fetch(`${link}/api/obras/consulta`, {cache: 'no-store'}).then(res => res?.json()).then(obrasCarreg => {
+            console.log(obrasCarreg)
             setObras(obrasCarreg)
     })}, [])
 

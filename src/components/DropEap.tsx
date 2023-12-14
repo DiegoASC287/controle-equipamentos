@@ -23,11 +23,10 @@ export default function DropEap(props:{selecionar: (item:string) => void, dimTex
             })
             .then(item => item.json()).then(eap => {
                 setEap(eap)
-                console.log(eap)
         })
     }, [])
     return (
-        <div className="w-60 md:w-[600px] max-w-sm font-medium relative">
+        <div className="w-60 md:w-[1200px] max-w-sm font-medium relative">
             <div onClick={e=> setAberto(!aberto)}
             className="bg-white w-full p-1 flex items-center justify-between rounded border-2 border-zinc-200">
                 

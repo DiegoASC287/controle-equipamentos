@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/app/lib/prisma"
 import ModeloItemEAP from "@/model/ModeloItemEAP"
-import { ItemEap } from "@prisma/client"
 
 export async function GET(request: NextRequest) {
     const {searchParams} = new URL(request.url)

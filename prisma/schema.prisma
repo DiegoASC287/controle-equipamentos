@@ -11,6 +11,8 @@ model Obra {
   codigo     String @id
   nome       String
   imagem_url String
+
+  @@map("obras")
 }
 
 model Account {
