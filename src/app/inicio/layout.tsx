@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../lib/authOptions";
 import Link from "next/link";
-import BarraLateralHome from "@/components/BarraLateralHome";
+import BarraLateralMaquinas from "@/components/BarraLateralMaquinas";
 interface LayoutProps{
     children: React.ReactNode | React.ReactNode[] 
 }

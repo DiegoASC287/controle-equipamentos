@@ -6,7 +6,7 @@ import { useEffect } from "react"
 export default function SignOut(){
     useEffect(() => {
         signOut({
-            callbackUrl: "/",
+            callbackUrl: "/inicio/obras",
             redirect: true
         })
 

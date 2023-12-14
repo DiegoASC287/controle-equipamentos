@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../lib/authOptions";
 import Link from "next/link";
-import BarraLateralHome from "@/components/BarraLateralHome";
+import BarraLateralMaquinas from "@/components/BarraLateralMaquinas";
 interface LayoutProps{
     children: React.ReactNode | React.ReactNode[] 
 }
@@ -16,7 +16,7 @@ export default async function LayoutPagina({children}: LayoutProps){
             </Link>
             </div>
     ): (<div className='flex'>
-    <BarraLateralHome/>
+    <BarraLateralMaquinas/>
     <div className='flex-grow'>{children}</div>
     </div>)
 }

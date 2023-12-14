@@ -184,6 +184,7 @@ export default function TabelaManutencoes(props: TabelaManutencoesProps) {
     return (
         <div className="max-h-[400px] min-h-[380px] overflow-y-auto">
              {renderizarStatus()}
+             <div className=" w-full p-1 bg-zinc-300 font-bold flex justify-center items-center border-l-2 border-r-2 border-t-2 border-black">Tabela de manutenções</div>
         
         <table className="border-collapse w-full max-h-[300px]">
             <thead>

@@ -9,6 +9,7 @@ import Maquina from "@/model/Maquina"
 import Apontador from "@/model/Apontador"
 import DropEapApelido from "./DropEapApelido"
 import link from "@/app/pathspers"
+import OperadorProps from "@/model/OperadorProps"
 
 interface FormParteDiariaProps {
 adicionarLinha: (linhaTab: LinhaTabPartDiaria) => void
@@ -27,7 +28,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
     const [dataInicialInterf, setDataInicialInterf] = useState(new Date()) 
     const [dataFinalInterf, setDataFinalInterf] = useState(new Date()) 
     const [motivoInterf, setMotivoInterf] = useState<string>('')
-    const [operador, setOperador] = useState<string>('')
+    const [operador, setOperador] = useState<OperadorProps>()
     const [listaInterfs, setListaInterfs] = useState<FormatoInterferencia[]>([])
     const [selecao, setSelecao] = useState<string>()
     const [horimetroInicial, setHorimetroInicial] = useState<number>()
@@ -94,6 +95,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             })
             .then(item => item.json()).then(maq => {
                 setMaquina(maq)
+                setOperador(maq.operador)
         })
     }
     
@@ -125,13 +127,12 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
     function tratarEntrada(){
 
         const erros: string[] = []
-        descricaoServ?.trim() === "" ? erros.push("Descrição em branco"):null;
         apontador?.trim() === "" ? erros.push("Selecione um apontador"):null;
         selectItemEap?.apelido.trim() === "" ? erros.push("Selecione um item da EAP"):null;
 
         motivoInterf?.trim() === "" ? erros.push("Motivo de interferência em branco"):null;
 
-        operador?.trim() === "" ? erros.push("Digite o nome do operador"):null;
+        operador? erros.push("A máquina não tem um operador!"):null;
 
         dataFinalTrabalho <= dataInicialTrabalho ? 
         erros.push("Data final de trabalho menor ou igual à data inicial") : null;
@@ -166,7 +167,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
                 data_inicial_trabalho: dataInicialTrabalho,
                 descricao_serv: descricaoServ,
                 motivoInterf: motivoInterf,
-                operador: operador,
+                operador: operador?.nome,
                 interferencias: listaInterfs.map((e:FormatoInterferencia)=> ({hora_inicial: e.hora_inicial,
                      hora_final: e.hora_final, motivo: e.motivo,
                      contador: e.contador, total_combustivel: e.total_combustivel})),
@@ -198,7 +199,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             </div>
 
             <div className="flex flex-col">
-            <label className="w-full bg-zinc-100 flex-grow" >Descrição da atividade</label>
+            <label className="w-full bg-zinc-100 flex-grow" >Observações</label>
             <input type="text" placeholder="Digite a descrição" className="pl-2 bg-zinc-100 border-b-2 border-zinc-300 flex-grow " value={descricaoServ}
             onChange={e => setDescricao(e.target.value)}/>
             </div>      

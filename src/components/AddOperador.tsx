@@ -1,12 +1,14 @@
 'use client'
 import {  IconPlus, } from "@tabler/icons-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function AddOperador(){
     const router = useRouter()
+    const search = useSearchParams()
+    const codigo = search.get("codigoobra")
     return (
-        <button onClick={e => router.push(`/inicio/operador/cadastrooperador`)}
+        <button onClick={e => router.push(`/inicio/operador/cadastrooperador?codigoobra=${codigo}`)}
          className={`
         flex flex-col border rounded-lg p-1
         border-zinc-200

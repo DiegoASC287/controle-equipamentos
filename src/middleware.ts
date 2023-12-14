@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export function middleware() {
     // retrieve the current response
-    const res = NextResponse.next()
+    const res = NextResponse.next() 
 
     // add the CORS headers to the response
     res.headers.append('Access-Control-Allow-Credentials', "true")

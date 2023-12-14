@@ -7,7 +7,7 @@ import link from "@/app/pathspers";
 export default function PaginaObras(){
     const [maquinas, setObras] = useState<Obra[]>()
     useEffect(() => {
-        fetch(`${link}/api/obras/consulta`, {cache: 'no-store'}).then(res => res.json()).then(obrasCarreg => {
+        fetch(`${link}/api/obras/consulta`, {cache: 'no-store'}).then(res => res?.json()).then(obrasCarreg => {
             setObras(obrasCarreg)
     })}, [])
 

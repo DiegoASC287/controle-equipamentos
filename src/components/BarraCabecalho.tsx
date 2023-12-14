@@ -12,9 +12,8 @@ export default async function BarraCabecalho(){
             <div className="flex justify-start items-center gap-10 px-2 text-white">
             <Image  src="/imgs/logo.png" alt="Logo" width={200} height={50}/>
             <Link href={"/inicio/obras"} passHref>
-            <span className="hover:border-b-2 border-white ">Inicio</span>
+            <span className="hover:border-b-2 border-white ">Obras</span>
             </Link>
-            <span className="hover:border-b-2 border-white ">Sobre</span>
             </div>
             <div className="flex items-center px-5 text-white gap-5 font-bold">
             <span className="hidden sm:inline">{session && session.user?.name}</span>

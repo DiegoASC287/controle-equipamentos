@@ -2,6 +2,7 @@ import { Mode } from "fs"
 import Apontador from "./Apontador"
 import FormatoInterferencia from "./FormatoInterferencia"
 import ModeloItemEap from "./ModeloItemEAP"
+import OperadorProps from "./OperadorProps"
 export default interface LinhaTabPartDiaria{
     idMaquina: number
     descricao_serv?: string

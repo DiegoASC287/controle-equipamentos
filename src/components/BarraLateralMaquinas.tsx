@@ -1,9 +1,9 @@
 'use client'
-import {IconBulldozer, IconFilePlus} from "@tabler/icons-react";
+import {IconBulldozer, IconFilePlus, IconUser} from "@tabler/icons-react";
 import {Tooltip} from "@nextui-org/react";
 import ItemLateral from "./ItemLateral";
 import { useSearchParams } from "next/navigation";
-export default function BarraLateralHome(){
+export default function BarraLateralMaquinas(){
 
     const search = useSearchParams()
     const codigo = search.get("codigoobra")
@@ -18,7 +18,7 @@ export default function BarraLateralHome(){
             className="text-red-800"/>} texto=""/>
             </Tooltip>
             <Tooltip className="bg-zinc-200 text-sm rounded-md px-2 border-dashed border-zinc-400 border-2"
-             content="Cadastros" delay={0} closeDelay={0} placement="right">
+             content="Cadastros" delay={0} closeDelay={0} placement="right" >
             <ItemLateral href={`/inicio/cadastro?codigoobra=${codigo}`} icone={<IconFilePlus className="text-red-800" size={30}/>} texto=""/>
             </Tooltip>
         </div>

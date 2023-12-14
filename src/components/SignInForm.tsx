@@ -22,7 +22,7 @@ export default function SignInForm(){
 
         if (status === 'authenticated'){
             router.refresh()
-            router.push("/")
+            router.push("/inicio/obras")
             router.refresh()
         }
     }, [status])
