@@ -87,6 +87,7 @@ export default function PaginaCadastrarMaquina({
         
                     await fetch(`${link}/api/obras/cadastro`, {
                         method: 'POST',
+                        cache: "no-cache",
                         body: JSON.stringify(obra)
                     }).then(resp => resp.json()).then(result => {
                         setObraAdicionada(result)

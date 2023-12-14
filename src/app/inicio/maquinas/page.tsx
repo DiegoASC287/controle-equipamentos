@@ -25,7 +25,7 @@ export default function PaginaMaquinas(){
     }
     
     useEffect(() => {
-        fetch(`${link}/api/maquinas?codigoobra=${codigo}`, {cache: 'no-store'}).then(res => res.json()).then(maq => {
+        fetch(`${link}/api/maquinas?codigoobra=${codigo}`, {cache: 'no-cache'}).then(res => res.json()).then(maq => {
             setMaquinas(maq)
             setFiltro({categoria: "", tipo: "", nome: ""})})
     }, [])

@@ -45,7 +45,7 @@ export default function PageAssociacoes({
     }, [selectTipo])
     function buscarTipos(){
         fetch(`${link}/api/maquinas/tiposatividade`, {
-                    method: 'GET', cache: 'no-store'
+                    method: 'GET', cache: 'no-cache'
                 }).then(resp => resp.json()).then(result => {
                     setListaTipos(result)})
 
@@ -58,7 +58,9 @@ export default function PageAssociacoes({
         }}
 
     useEffect(() => {
-        fetch(`${link}/api/maquinas/consulta?id=${params.id}`)
+        fetch(`${link}/api/maquinas/consulta?id=${params.id}`, {
+            cache: 'no-cache'
+        })
         .then(res => res.json())
         .then(maquinaRes => setMaquina(maquinaRes))
         buscarAtribuicoes()
@@ -68,7 +70,7 @@ export default function PageAssociacoes({
     }, [])
 
     function buscarAtribuicoes(){
-        fetch(`${link}/api/maquinas/associacaoatividade?id=${params.id}`, {cache: 'no-store'})
+        fetch(`${link}/api/maquinas/associacaoatividade?id=${params.id}`, {cache: 'no-cache'})
         .then(res => res.json())
         .then(atribuicoesRes => {
             console.log(atribuicoesRes)
@@ -76,7 +78,7 @@ export default function PageAssociacoes({
     }
 
     function deletarAtribuicao(id:number){
-        fetch(`${link}/api/maquinas/associacaoatividade?id=${id}`, {cache: 'no-store', method: "DELETE"})
+        fetch(`${link}/api/maquinas/associacaoatividade?id=${id}`, {cache: 'no-cache', method: "DELETE"})
         .then(res => res.json())
         .then(atribuicoesRes => {
             setAtribuicoes(atribuicoes.filter(e => e.id !== atribuicoesRes.id))})

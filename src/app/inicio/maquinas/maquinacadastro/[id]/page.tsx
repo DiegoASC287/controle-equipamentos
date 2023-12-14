@@ -97,7 +97,7 @@ export default function PaginaCadastrarMaquina({
 
     useEffect(() => {
         fetch(`${link}/api/maquinas/consultatemplateman?tipo_veiculo=${tipoSelect}&unidade=${unidade}`, {
-            method: 'GET',
+            method: 'GET', cache: 'no-cache'
         }).then(resp => resp.json()).then(resultado => {
             planoManTemp(resultado)
         })

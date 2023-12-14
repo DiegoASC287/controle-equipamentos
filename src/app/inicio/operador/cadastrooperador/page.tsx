@@ -148,7 +148,7 @@ export default function PaginaCadastroOperador({
         if(errosOp.length === 0 ){
 
             fetch(`${link}/api/operadorcadastro?cpf=${op.cpf}`, {
-                method: 'GET',
+                method: 'GET', cache: "no-cache"
             }).then(resp => resp.json()).then(result => {
                 if(result){
                     alert("Já existe um usuário com esse email")
