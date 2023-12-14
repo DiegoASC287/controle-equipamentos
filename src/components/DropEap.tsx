@@ -1,9 +1,10 @@
-import ModeloItemEAP from '../model/ModeloItemEAP'
 'use client'
+import ModeloItemEAP from '../model/ModeloItemEAP'
 import { useEffect, useState } from 'react'
 import {BiChevronDown} from 'react-icons/bi'
 import {AiOutlineSearch} from 'react-icons/ai'
 import link from '@/app/pathspers'
+import { useSearchParams } from 'next/navigation'
 
 export default function DropEap(props:{selecionar: (item:string) => void, dimTexto:number}){
 
@@ -12,8 +13,12 @@ export default function DropEap(props:{selecionar: (item:string) => void, dimTex
     const [itemInput, setItemInput] = useState<string>("")
     const [selecionado, setSelecionado] = useState<ModeloItemEAP>()
     const [aberto, setAberto] = useState<boolean>(false)
+
+    const search = useSearchParams()
+    const codigo = search.get("codigo")
+
     useEffect(() => {
-        fetch(`${link}/api/eap/lerecadastrar`, {
+        fetch(`${link}/api/eap/lerecadastrar?codigo=${codigo}`, {
                 cache: 'no-store'
             })
             .then(item => item.json()).then(eap => {
@@ -61,7 +66,7 @@ export default function DropEap(props:{selecionar: (item:string) => void, dimTex
                     className={`border-b-2 border-zinc-200 p-2 text-sm hover:bg-zinc-100 hover:cursor-pointer
                      ${(linha?.descricao?.toLowerCase().startsWith(`${descricaoInput}`))
                      && (linha?.item?.toLowerCase().startsWith(`${itemInput}`))?'block':'hidden'}`}>
-                        <span className='pl-2'>{`${linha.item} - `}</span><span>{linha.descricao}</span></li>)}
+                        <span className='pl-2'>{`${linha.item.split("-")[1]}.${linha.item.split(".")[1]} - `}</span><span>{linha.descricao}</span></li>)}
                     
                 </ul>
         </div>

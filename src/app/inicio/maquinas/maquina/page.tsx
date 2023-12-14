@@ -47,7 +47,7 @@ export default async function PaginaMostrarMaquina() {
                     <div>
                         <MaquinaFoto id={id ? id : "999"} />
                         <Link href={{
-                            pathname: `/inicio/maquinas/maquinaassociacoes/${maquina?.id}`
+                            pathname: `/inicio/maquinas/maquinaassociacoes/${maquina?.id}?codigo=${maquina?.cod_obra}`
                         }} >
                             <button className="bg-zinc-300 hover:bg-zinc-200 w-full p-1">Editar associações de trabalho</button>
                         </Link>

@@ -1,6 +1,5 @@
 'use client'
 import { Obra } from "@prisma/client";
-import { NextRequest } from "next/server";
 import { useEffect, useState } from "react";
 import ObraItem from "@/components/ObraItem";
 import link from "@/app/pathspers";
@@ -8,7 +7,6 @@ export default function PaginaObras(){
     const [maquinas, setObras] = useState<Obra[]>()
     useEffect(() => {
         fetch(`${link}/api/obras/consulta`, {cache: 'no-store'}).then(res => res?.json()).then(obrasCarreg => {
-            console.log(obrasCarreg)
             setObras(obrasCarreg)
     })}, [])
 
@@ -17,6 +15,6 @@ export default function PaginaObras(){
 
     }
     return (
-        <div className="p-5 flex">{renderizarObras()}</div>
+        <div className="p-5 flex gap-3">{renderizarObras()}</div>
     )
 }

@@ -1,30 +1,40 @@
 import { NextRequest, NextResponse } from "next/server"
 import prisma from "@/app/lib/prisma"
 import ModeloItemEAP from "@/model/ModeloItemEAP"
+import { ItemEap } from "@prisma/client"
 
 export async function GET(request: NextRequest) {
     const {searchParams} = new URL(request.url)
+    const codigo = searchParams.get("codigo")
     const id = Number(searchParams.get("id"))
-    const atividade = await prisma.itemEap.findMany()
+    const atividade = await prisma.itemEap.findMany({
+        where: {
+            cod_obra: codigo?codigo:""
+        }
+    })
     return NextResponse.json(atividade)
 }
 
 export async function POST(request: Request) {
-    const item_eap:ModeloItemEAP = await request.json()
-    if(item_eap){   
+    const item_eap:ModeloItemEAP[] = await request.json()
+    const convert = item_eap.map(e => {
+        return {
+            codigo: e.codigo,
+            cod_obra: e.cod_obra,
+            descricao: e.descricao,
+            indice: e.indice,
+            item: e.item,
+            preco_unitario: e.preco_unitario,
+            unidade: e.unidade            
+        }
+    }) 
+    if(convert){   
         try{
-            console.log(item_eap.descricao)
-            const item_eap_add = await prisma.itemEap.create({
-                data:{
-                    codigo: item_eap.codigo,
-                    descricao: item_eap.descricao,
-                    indice: item_eap.indice,
-                    item: item_eap.item,
-                    preco_unitario: item_eap.preco_unitario,
-                    unidade: item_eap.unidade, 
-        }})
+            const item_eap_add = await prisma.itemEap.createMany({
+                data: convert})
             return NextResponse.json("Adicionado com sucesso!")
-        } catch{
+        } catch (err){
+            console.log(err)
             return new NextResponse("Erro", {status: 406})
         }
 }else {

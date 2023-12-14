@@ -168,6 +168,7 @@ model ItemEap {
   unidade        String
   indice         Float
   preco_unitario Float
+  cod_obra       String
   atividades     Atividade[]
 
   @@map("eap")
@@ -187,7 +188,7 @@ model TipoAtividade {
   id               Int                 @id @default(autoincrement())
   nome             String?
   unidade          String?
-  items_associacao ItemAssociacaoEap[]
+  items_associacao ItemAssociacaoEap[] 
 }
 
 //tabelas de tipos de maquinas

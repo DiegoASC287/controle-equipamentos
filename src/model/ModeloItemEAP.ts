@@ -8,5 +8,6 @@ export default interface ItemEAP{
     indice: number
     preco_unitario: number
     atividades: LinhaTabPartDiaria[]
+    cod_obra: string
 }
 
