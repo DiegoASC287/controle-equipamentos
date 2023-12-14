@@ -17,6 +17,6 @@ export default function PaginaObras(){
 
     }
     return (
-        <div className="p-5">{renderizarObras()}</div>
+        <div className="p-5 flex">{renderizarObras()}</div>
     )
 }
