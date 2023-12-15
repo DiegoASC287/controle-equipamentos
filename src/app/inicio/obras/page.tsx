@@ -21,6 +21,6 @@ export default async function PaginaObras(){
 
     }
     return (
-        <div className="p-5 flex gap-3">{renderizarObras(obras)}</div>
+        <div className="p-5 flex gap-3 flex-wrap">{renderizarObras(obras)}</div>
     )
 }
