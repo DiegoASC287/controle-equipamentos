@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Aahbrant',
   description: 'Plataforma para gerenciamento de epis e máquinas',
+  
 }
 
 export default function RootLayout({
