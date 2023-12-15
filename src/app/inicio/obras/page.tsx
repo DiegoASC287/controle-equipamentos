@@ -5,7 +5,7 @@ import link from "@/app/pathspers";
 async function getObras() {
 
     const {signal} = new AbortController()
-    const req = await fetch(`${link}/api/obras/consulta`,  {cache: 'no-store', signal})
+    const req = await fetch(`${link}/api/obras/consulta?t=${(Math.random()*1000).toFixed(0)}`,  {cache: 'no-store', signal})
     const obras = await req.json()
     console.log(obras)
     return obras
