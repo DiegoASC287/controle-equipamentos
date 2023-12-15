@@ -6,6 +6,7 @@ export async function GET(request: NextRequest) {
     const {searchParams} = new URL(request.url)
     const codigo = searchParams.get("codigo")
     const id = Number(searchParams.get("id"))
+    console.log(codigo)
     const atividade = await prisma.itemEap.findMany({
         where: {
             cod_obra: codigo?codigo:""

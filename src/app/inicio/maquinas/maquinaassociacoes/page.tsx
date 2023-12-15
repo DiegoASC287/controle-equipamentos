@@ -7,6 +7,7 @@ import { IconX } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 import LoadingCircular from '@/components/loadings/LoadingCircular'
 import link from "@/app/pathspers"
+import { useSearchParams } from "next/navigation"
 
 interface PageAssociacoesProps{
     params: {id:string}
@@ -27,6 +28,9 @@ export default function PageAssociacoes({
 
 
 
+    const search = useSearchParams()
+    const id = search.get("id")
+    const codigo = search.get("codigo")
     function adicionarAtribuicoes(atribuicao: ItemAssociacaoEapModel){
         if(atribuicoes){
             fetch(`${link}/api/maquinas/associacaoatividade`, {
@@ -40,6 +44,9 @@ export default function PageAssociacoes({
 
         }
     }
+
+
+
     useEffect(() => {
         buscar_atividade_id()
     }, [selectTipo])
@@ -58,7 +65,7 @@ export default function PageAssociacoes({
         }}
 
     useEffect(() => {
-        fetch(`${link}/api/maquinas/consulta?id=${params.id}`, {
+        fetch(`${link}/api/maquinas/consulta?id=${id}`, {
             cache: 'no-cache'
         })
         .then(res => res.json())
@@ -70,7 +77,7 @@ export default function PageAssociacoes({
     }, [])
 
     function buscarAtribuicoes(){
-        fetch(`${link}/api/maquinas/associacaoatividade?id=${params.id}`, {cache: 'no-cache'})
+        fetch(`${link}/api/maquinas/associacaoatividade?id=${id}`, {cache: 'no-cache'})
         .then(res => res.json())
         .then(atribuicoesRes => {
             console.log(atribuicoesRes)

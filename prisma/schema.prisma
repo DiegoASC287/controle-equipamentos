@@ -191,6 +191,8 @@ model TipoAtividade {
   nome             String?
   unidade          String?
   items_associacao ItemAssociacaoEap[] 
+
+  @@map("tipo_atividade")
 }
 
 //tabelas de tipos de maquinas

@@ -24,6 +24,7 @@ export default async function PaginaMostrarMaquina() {
     const [carregando, setCarregando] = useState<boolean>(true)
     const search = useSearchParams()
     const id = search.get("id")
+    const codigo = search.get("codigoobra")
 
     const [equipamento, setEquipamento] = useState<OperadorProps | undefined | null>()
 
@@ -47,7 +48,11 @@ export default async function PaginaMostrarMaquina() {
                     <div>
                         <MaquinaFoto id={id ? id : "999"} />
                         <Link href={{
-                            pathname: `/inicio/maquinas/maquinaassociacoes/${maquina?.id}?codigo=${maquina?.cod_obra}`
+                            pathname: `/inicio/maquinas/maquinaassociacoes`,
+                            query: {
+                                id,
+                                codigo
+                            }
                         }} >
                             <button className="bg-zinc-300 hover:bg-zinc-200 w-full p-1">Editar associações de trabalho</button>
                         </Link>
