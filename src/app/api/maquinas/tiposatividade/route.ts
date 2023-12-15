@@ -8,3 +8,5 @@ export async function GET(request: NextRequest) {
     const tipo = await prisma.tipoAtividade.findMany()
     return NextResponse.json(tipo)
 }
+
+export const dynamic = "force-dynamic";

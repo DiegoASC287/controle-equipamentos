@@ -25,3 +25,5 @@ export async function DELETE(req:Request) {
         return NextResponse.json({msg: "Erro"})
     }
 }
+
+export const dynamic = "force-dynamic";

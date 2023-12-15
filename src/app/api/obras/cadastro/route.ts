@@ -28,3 +28,4 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(obra)
     }
 
+    export const dynamic = "force-dynamic";

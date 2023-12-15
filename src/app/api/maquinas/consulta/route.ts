@@ -46,3 +46,6 @@ export async function POST(request: Request) {
 }
     return new NextResponse("Erro", {status: 401})
 }
+
+
+export const dynamic = "force-dynamic";

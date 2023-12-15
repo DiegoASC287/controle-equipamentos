@@ -29,3 +29,5 @@ export async function POST(request: Request) {
     return NextResponse.json({er: "Atividade vazia"}, {status: 406})
 }
 }
+
+export const dynamic = "force-dynamic";
