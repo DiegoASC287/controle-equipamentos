@@ -3,7 +3,9 @@ import ObraItem from "@/components/ObraItem";
 import link from "@/app/pathspers";
 
 async function getObras() {
-    const req = await fetch(`${link}/api/obras/consulta`, {cache: "no-store"})
+
+    const {signal} = new AbortController()
+    const req = await fetch(`${link}/api/obras/consulta`, {signal})
     const obras = await req.json()
     console.log(obras)
     return obras
