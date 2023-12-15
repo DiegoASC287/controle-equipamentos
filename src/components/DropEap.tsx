@@ -64,7 +64,7 @@ export default function DropEap(props:{selecionar: (item:string) => void, dimTex
                      key={linha.item} 
                     className={`border-b-2 border-zinc-200 p-2 text-sm hover:bg-zinc-100 hover:cursor-pointer
                      ${(linha?.descricao?.toLowerCase().startsWith(`${descricaoInput}`))
-                     && (linha?.item?.toLowerCase().startsWith(`${itemInput}`))?'block':'hidden'}`}>
+                     && (linha?.item.split(".")[1]?.toLowerCase().startsWith(`${itemInput}`))?'block':'hidden'}`}>
                         <span className='pl-2'>{`${linha.item.split("-")[1]}.${linha.item.split(".")[1]} - `}</span><span>{linha.descricao}</span></li>)}
                     
                 </ul>

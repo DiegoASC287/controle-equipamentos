@@ -1,6 +1,5 @@
 'use client'
 
-import ItemEAP from "@/model/ModeloItemEAP"
 import { useEffect, useState } from "react"
 import link from "../pathspers"
 

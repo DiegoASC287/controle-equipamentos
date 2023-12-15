@@ -4,7 +4,7 @@ import {NextResponse} from 'next/server'
 export async function POST(request: Request) {
     const body = await request.json()
     const {nome, unidade} = body
-
+    console.log(nome, unidade)
     try{
         const tipo = await prisma.tipoAtividade.create({
             data:{
