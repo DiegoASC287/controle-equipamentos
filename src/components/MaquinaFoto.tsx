@@ -7,8 +7,6 @@ interface MaquinaFotoProps{
 }
 
 import Image from "next/image"
-import Maquina from "@/model/Maquina"
-import { useEffect, useState } from "react"
 
 export default function MaquinaFoto(props: MaquinaFotoProps){
     

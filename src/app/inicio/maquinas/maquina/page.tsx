@@ -46,7 +46,10 @@ export default async function PaginaMostrarMaquina() {
 
                 <div className="flex flex-row p-3 border-b-2 border-zinc-400 w-full">
                     <div>
-                        <MaquinaFoto id={id ? id : "999"} />
+                        {maquina?.imagem?(
+
+                        <MaquinaFoto link={maquina?.imagem} id={id ? id : "999"} />
+                        ): (null)}
                         <Link href={{
                             pathname: `/inicio/maquinas/maquinaassociacoes`,
                             query: {
