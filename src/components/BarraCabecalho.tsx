@@ -8,9 +8,9 @@ import { authOptions } from "@/app/lib/authOptions";
 export default async function BarraCabecalho(){
     const session = await getServerSession(authOptions)
     return (
-        <div className={`h-[50px] flex justify-between bg-red-900 border-b-1 border-zinc-500`}>
-            <div className="flex justify-start items-center gap-10 px-2 text-white">
-            <Image  src="/imgs/logo.png" alt="Logo" width={200} height={50}/>
+        <div className={`h-[50px] flex justify-between bg-red-900 border-b-1 border-zinc-500 rounded-none shadow-md shadow-zinc-300`}>
+            <div className="flex justify-start items-center gap-10 text-white">
+            <Image  src="/imgs/logo.png" alt="Logo" width={270} height={50}/>
             <Link href={"/inicio/obras"} passHref>
             <span className="hover:border-b-2 border-white ">Obras</span>
             </Link>

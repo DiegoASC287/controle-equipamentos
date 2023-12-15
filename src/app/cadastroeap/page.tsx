@@ -8,21 +8,19 @@ export default function CadastrarEap(){
 
     const [cod_obra, setCodObra] = useState<string>("")
     const [linhaEap, setLinhaEap] = useState<ItemEAP[]>()
-    const [linhaEapAdd, setLinhaEapAdd] = useState<ItemEAP[]>()
 
     function subirEap(){
         fetch("./Eap2.csv").then(res => res.text()).then(texto => {
             const valor = texto.split("\n")
             const linhasObj = valor.map(linha => {
-                const linhaCur = linha.replace("/r", "").split(";")
-                return {cod_obra, codigo: "000", atividades: [], descricao: linhaCur[1], item: linhaCur[0], indice: 0, preco_unitario: 0, unidade: linhaCur[2]}
+                const linhaCur = linha.replace("\r", "").split(";")
+                return {cod_obra, codigo: "000", atividades: [], descricao: linhaCur[1], item: linhaCur[0], indice: 0, preco_unitario: 0,
+                 unidade: linhaCur[2]? linhaCur[2]?.toLowerCase():""}
             })
 
-            setLinhaEap(linhasObj.map((k, i) => {return {...k, item: `${i}-${k.item}`}}).filter(e => e.descricao && e.descricao?.trim() !== ""))
-        
+            setLinhaEap(linhasObj.map((k, i) => {return {...k, item: `${(Math.random()*10000).toFixed(0)}-${k.item}`}}).filter(e => e.descricao && e.descricao?.trim() !== ""
+             && e.item && e.item !== ""))
         })
-
-        
     }
 
     function finalizar(){
@@ -30,13 +28,13 @@ export default function CadastrarEap(){
             method: "POST",
             cache: 'no-store',
             body: JSON.stringify(linhaEap)
-        }).then(res => res.json()).then(lista => setLinhaEapAdd(lista))
+        }).then(res => res.json()).then(lista => null)
     }
 
     useEffect(() => {
         console.log(linhaEap)
-        linhaEapAdd?.forEach(e => console.log(e))
-    }, [linhaEapAdd])
+        linhaEap?.forEach(e => console.log(e))
+    }, [linhaEap])
     return (
         <div>
             <label htmlFor="">Codigo da obra</label>
