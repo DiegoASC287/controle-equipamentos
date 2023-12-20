@@ -5,7 +5,6 @@ interface TabelaPartesDiariasProps{
     maquinaId: number | undefined
     trazerInfos: (infos: LinhaTabPartDiaria[]) => void
     tabela: LinhaTabPartDiaria[]
-    
 
 }
 
@@ -31,16 +30,17 @@ export default function TabelaPartesDiarias(props: TabelaPartesDiariasProps){
                     <th rowSpan={2} className="border-2 border-zinc-400 px-5 py-2 text-start">Atividade</th>
                     <th rowSpan={2} className="border-2 border-zinc-400 px-5 py-2 text-start">Interferências</th>
                     <th rowSpan={2} className="border-2 border-zinc-400 px-5 py-2 text-start">Apontador</th>
+                    <th rowSpan={2} className="border-2 border-zinc-400 px-5 py-2 text-start">Observações</th>
                 </tr>
                 <tr className="bg-gray-300">
-                    <th className="border-2 border-zinc-400 px-5 py-2 text-start">Data</th>
-                    <th className="border-2 border-zinc-400 px-5 py-2 text-start">Horário Inicial</th>
-                    <th className="border-2 border-zinc-400 px-5 py-2 text-start">Horário final</th>
+                    <th className="border-2 border-zinc-400 px-5 py-2 text-start max-w-[100px]">Data</th>
+                    <th className="border-2 border-zinc-400 px-5 py-2 text-start">H. Inicial</th>
+                    <th className="border-2 border-zinc-400 px-5 py-2 text-start">H. final</th>
                 </tr>
             </thead>
             <tbody className="border-2 border-zinc-300">
             {props.tabela?.map((registro: LinhaTabPartDiaria, i:number) => <tr key={i}>
-            <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ? 'bg-zinc-100': 'bg-white'}`}>{registro?.eapId}</td>
+            <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ? 'bg-zinc-100': 'bg-white'}`}>{registro?.eapId?.split("-")[1]}</td>
             <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ?
              'bg-zinc-100': 'bg-white'}`}>{formato.format(new Date(registro.data_inicial_trabalho))}</td>
             <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ? 'bg-zinc-100': 'bg-white'}`}>
@@ -58,6 +58,7 @@ export default function TabelaPartesDiarias(props: TabelaPartesDiariasProps){
             </ul>
                 </td>
                 <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ? 'bg-zinc-100': 'bg-white'}`}>{registro.apontador?.nome}</td>
+                <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ? 'bg-zinc-100': 'bg-white'}`}>{registro.observacoes}</td>
             
             </tr>
             )}

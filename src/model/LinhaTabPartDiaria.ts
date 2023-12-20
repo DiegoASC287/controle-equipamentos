@@ -21,4 +21,5 @@ export default interface LinhaTabPartDiaria{
     eap?: any
     eapId?: string
     cod_obra?: string
+    observacoes?: string
 }

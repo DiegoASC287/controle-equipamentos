@@ -8,8 +8,8 @@ export async function GET(request: NextRequest) {
     const codigoobra = searchParams.get("codigoobra")
     const atividade = await prisma.atividade.findMany({
         where:{
-            maquinaId: id
-
+            maquinaId: id,
+            cod_obra: codigoobra
         },include:{
             interferencias: true,
             apontador: true,
@@ -23,7 +23,6 @@ export async function POST(request: Request) {
     const atividade:LinhaTabPartDiaria = await request.json()
     if(atividade){   
         try{
-            console.log(atividade)
             const atividadeAdd = await prisma.atividade.create({
                 data:{
                     data_final_trabalho: atividade.data_final_trabalho,
@@ -33,6 +32,7 @@ export async function POST(request: Request) {
                     horimetro_final: atividade.horimetroFinal,
                     operador: atividade.operador,
                     cod_obra: atividade.cod_obra?.toString(),
+                    observacoes: atividade.observacoes,
                     maquina: {
                         connect: {
                             id: atividade.idMaquina

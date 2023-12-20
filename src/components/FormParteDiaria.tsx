@@ -181,7 +181,8 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
                 horimetro_inicial: horimetroInicial,
                 apontadorId: Number(apontador.split("-")[0]),
                 eapId: selectItemEap?.itemEap.trim(),
-                cod_obra: maquina?.cod_obra
+                cod_obra: maquina?.cod_obra,
+                observacoes: observacoes
                 
 
             }
