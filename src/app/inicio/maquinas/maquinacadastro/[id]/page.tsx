@@ -185,34 +185,51 @@ export default function PaginaCadastrarMaquina({
         }
 
     }
+    useEffect(() => {
+
+        if (documento && artUrl && planoManUrl){
+
+            fetch('/api/maquinas/adddoc', {
+                method: 'POST',
+                body: JSON.stringify(
+                    {
+                    maquinaId: maquinaAdicionada?.id,
+                    urlDocumento: documento, 
+                    status: 'Pendente', 
+                    data_documento: docVitalicio? null : dataVDocumento, 
+                    artUrl, 
+                    planoManUrl, 
+                    docVitalicio
+                })
+            }).then(res => res.json()).then(resposta => setStatusAdd({ status: 'ok', msg: "Máquina adicionada com sucesso!" }))
+        }
+
+
+    }, [documento, artUrl, planoManUrl])
     async function docUpload(maquinaId: number | undefined) {
-        await fetch('/api/maquinas/cadastroimg', {
-            method: 'POST',
-            headers: { 'content-type': fileDoc?.type || 'application/octet-stream' },
-            body: fileDoc
-        }).then(async (res) => res.json()).then(({ url }) => {
-            setDocumento(url)
-        })
-        await fetch('/api/maquinas/cadastroimg', {
-            method: 'POST',
-            headers: { 'content-type': maquinaPesada?.fileART?.type || 'application/octet-stream' },
-            body: maquinaPesada?.fileART
-        }).then(async (res) => res.json()).then(({ url }) => {
-            setArtUrl(url)
-        })
-        await fetch('/api/maquinas/cadastroimg', {
-            method: 'POST',
-            headers: { 'content-type': maquinaPesada?.fileART?.type || 'application/octet-stream' },
-            body: maquinaPesada?.filePlanoMan
-        }).then(async (res) => res.json()).then(({ url }) => {
-            setPlanoManUrl(url)
-        })
-        await fetch('/api/maquinas/adddoc', {
-            method: 'POST',
-            body: JSON.stringify({
-                maquinaId, urlDocumento: documento, status: 'Pendente', data_documento: docVitalicio? null : dataVDocumento, artUrl, planoManUrl, docVitalicio
+        Promise.all([
+            fetch('/api/maquinas/cadastroimg', {
+                method: 'POST',
+                headers: { 'content-type': fileDoc?.type || 'application/octet-stream' },
+                body: fileDoc
+            }).then(async (res) => res.json()).then(({ url }) => {
+                setDocumento(url)
+            }),
+            fetch('/api/maquinas/cadastroimg', {
+                method: 'POST',
+                headers: { 'content-type': maquinaPesada?.fileART?.type || 'application/octet-stream' },
+                body: maquinaPesada?.fileART
+            }).then(async (res) => res.json()).then(({ url }) => {
+                setArtUrl(url)
+            }),
+            fetch('/api/maquinas/cadastroimg', {
+                method: 'POST',
+                headers: { 'content-type': maquinaPesada?.filePlanoMan?.type || 'application/octet-stream' },
+                body: maquinaPesada?.filePlanoMan
+            }).then(async (res) => res.json()).then(({ url }) => {
+                setPlanoManUrl(url)
             })
-        }).then(res => res.json()).then(resposta => setStatusAdd({ status: 'ok', msg: "Máquina adicionada com sucesso!" }))
+        ])
     }
 
 
@@ -366,7 +383,7 @@ export default function PaginaCadastrarMaquina({
                             <button className=" p-2 bg-zinc-200 hover:bg-zinc-300"
                                 onClick={e => (manutencao?.trim() === "" || intervalo <= 0 ? alert("Falta preencher campos obrigatórios")
                                     : adicionarManutencao({
-                                        descricao: manutencao, intervalo: intervalo, id: (Math.random() * 1000).toFixed(0), tipo: tipoManutencao
+                                        descricao: manutencao, intervalo: intervalo, id: Number((Math.random() * 1000).toFixed(0)), tipo: tipoManutencao
                                     }))
                                 }>
                                 Adicionar manutenção</button>

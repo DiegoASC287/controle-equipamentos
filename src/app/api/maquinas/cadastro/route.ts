@@ -53,4 +53,52 @@ export async function POST(request: Request) {
 }
 }
 
+export async function DELETE(request: Request){
+    const corpo:Maquina = await request.json()
+    console.log(corpo)
+    try{
+    
+    await prisma.alugada.delete({where: {
+        id: corpo.aluguelInfo?.id
+    }})
+    
+    await prisma.maquinaPesada.delete({where: {
+        maquinaId: corpo.id
+    }})
+    await prisma.planoManutencao.deleteMany({
+        where:{
+            maquinaId: corpo.id
+        }
+    })
+    await prisma.itemAssociacaoEap.deleteMany({
+        where:{
+            maquinaId: corpo.id
+        }
+    })
+    
+    corpo.atividades?.forEach(async e => {
+
+        await prisma.interferencia.deleteMany({
+            where: {
+            atividadeId: e.id
+        }})
+    })
+    await prisma.atividade.deleteMany({
+        where:{
+            maquinaId: corpo.id
+        }
+    })
+    
+    const maquinaExc = await prisma.maquina.delete({where:
+        {
+        id: corpo.id
+    }
+    })
+    return NextResponse.json({})
+    }catch (e) {
+        console.log(e)
+    }
+    
+}
+
 export const dynamic = "force-dynamic";

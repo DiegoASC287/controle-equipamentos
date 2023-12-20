@@ -37,6 +37,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
     const [selectItemEap, setSelectItemEap] = useState<ModeloItemEapApelido>()
     const [total_combustivel, setVolAbastecido] = useState<Number>(0)
     const [contadorAbastecimento, setContadorAbastecimento] = useState<Number>(0)
+    const [observacoes, setObservacoes] = useState<string>("")
 
     const motivosLista =["","ALMOÇO", "ABASTECIMENTO","DESCLOCAMENTO", "MANUTENÇÃO",
     "CHUVA", "FALTA DE FRENTE", "OUTROS"]
@@ -55,7 +56,10 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             method: 'POST',
             cache: 'no-store',
             body: JSON.stringify({...atividade})
-        }).then(resp => resp.json()).then(result => console.log(result))
+        }).then(resp => resp.json()).then(result => {
+            alert(result.msg)
+            props.adicionarLinha(result?.atividade)
+        })
 
         if(horimetroFinal && maquina?.contador){
         
@@ -73,6 +77,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
 
     function selecionarItemEap(item: ModeloItemEapApelido){
         setSelectItemEap(item)
+        setDescricao(item.apelido)
     }
 
     useEffect(() => {
@@ -95,10 +100,10 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             })
             .then(item => item.json()).then(maq => {
                 setMaquina(maq)
-                setOperador(maq.operador)
+                setOperador(maq.maquina_pesada.operador)
+                
         })
     }
-    
 
     useEffect(() => {
         maquina?.contador? (
@@ -132,7 +137,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
 
         motivoInterf?.trim() === "" ? erros.push("Motivo de interferência em branco"):null;
 
-        operador? erros.push("A máquina não tem um operador!"):null;
+        !maquina?.maquina_pesada?.operador? erros.push("A máquina não tem um operador!"):null;
 
         dataFinalTrabalho <= dataInicialTrabalho ? 
         erros.push("Data final de trabalho menor ou igual à data inicial") : null;
@@ -167,21 +172,20 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
                 data_inicial_trabalho: dataInicialTrabalho,
                 descricao_serv: descricaoServ,
                 motivoInterf: motivoInterf,
-                operador: operador?.nome,
+                operador: maquina?.maquina_pesada?.operador?.nome,
                 interferencias: listaInterfs.map((e:FormatoInterferencia)=> ({hora_inicial: e.hora_inicial,
                      hora_final: e.hora_final, motivo: e.motivo,
                      contador: e.contador, total_combustivel: e.total_combustivel})),
                 registroNovo: true,
                 horimetroFinal: horimetroFinal,
-                horimetroInicial: horimetroInicial,
+                horimetro_inicial: horimetroInicial,
                 apontadorId: Number(apontador.split("-")[0]),
                 eapId: selectItemEap?.itemEap.trim(),
+                cod_obra: maquina?.cod_obra
+                
 
             }
             addAtividade(ativi)
-            
-
-            
         }else{
             alert(erros.reduce((resultado, proximo) => {
                 return (`${resultado}\n${proximo}`)
@@ -197,11 +201,10 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             <label className="w-full bg-zinc-100" >Ítem da EAP</label>
             <DropEapApelido selecionar={selecionarItemEap} dimTexto={50} maquinaId={props.idMaquina}/>
             </div>
-
             <div className="flex flex-col">
             <label className="w-full bg-zinc-100 flex-grow" >Observações</label>
-            <input type="text" placeholder="Digite a descrição" className="pl-2 bg-zinc-100 border-b-2 border-zinc-300 flex-grow " value={descricaoServ}
-            onChange={e => setDescricao(e.target.value)}/>
+            <input type="text" placeholder="Digite a descrição" className="pl-2 bg-zinc-100 border-b-2 border-zinc-300 flex-grow " value={observacoes}
+            onChange={e => setObservacoes(e.target.value)}/>
             </div>      
             </div>
             <div className="flex gap-4">
@@ -209,7 +212,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             <label className="w-full bg-zinc-100" >Apontador responsável</label>
             <select name="motivo" id="motivo" value={apontador} onChange={e => setApontador(e.target.value)}>
                 <option></option>
-                {apontadores?.map((apontador) => <option key={apontador.nome}>{`${apontador.nome}`}</option>)}
+                {apontadores?.map((apontador) => <option key={apontador.nome}>{`${apontador.id}-${apontador.nome}`}</option>)}
             </select>
             </div>
             </div>

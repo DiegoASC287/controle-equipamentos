@@ -10,10 +10,10 @@ export default interface MaquinaPesadaInterf{
         data_vencimento_habilitacao?: Date
         foto_documento?: string
         data_vencimento_documento?: Date
-        urlART?: string
+        artUrl?: string
         fileART?: File | null
         imgART?: {image: string | null }
-        urlPlanoMan?: string
+        planoManUrl?: string
         filePlanoMan?: File | null
         imgPlanoMan?: {image: string | null }
 }

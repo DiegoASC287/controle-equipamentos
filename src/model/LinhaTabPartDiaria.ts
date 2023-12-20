@@ -20,4 +20,5 @@ export default interface LinhaTabPartDiaria{
     apontador?: Apontador
     eap?: any
     eapId?: string
+    cod_obra?: string
 }

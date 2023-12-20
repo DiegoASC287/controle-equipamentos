@@ -3,7 +3,7 @@ import MaquinaPesadaInterf from "./MaqPesada"
 import ItemAssociacaoEapModel from "./ItemAssociacaoEapModel"
 import MaquinaPlanoMan from "./MaquinaPlanoMan"
 import RegistroManutencaoProps from "./RegistroManutencao"
-import OperadorProps from "./OperadorProps"
+import TipoAtividade from "./TipoAtividade"
 export default interface Maquina {
     id?: number
     nome?: string
@@ -29,8 +29,11 @@ export default interface Maquina {
     maquina_pesada?: MaquinaPesadaInterf
     item_associacao?: ItemAssociacaoEapModel[]
     docVitalicio?:boolean
-    urlDocumento?:string
+    documento?:string
     data_documento?: Date
     status_documento?: string
     cod_obra?: string
+    atividades?: TipoAtividade[]
+    ativa?: boolean
+    data_inicio_servicos?: Date
 }

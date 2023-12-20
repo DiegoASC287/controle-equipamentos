@@ -9,6 +9,8 @@ export async function POST(request: Request){
         artUrl: string, 
         planoManUrl: string
         docVitalicio: boolean} = await request.json()
+
+        console.log(corpo)
     try{
 
         const maquinaSub = await prisma.maquina.update({

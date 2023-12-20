@@ -8,7 +8,7 @@ import Calendario from "./Calendario"
 import link from "@/app/pathspers"
 
 interface ParteDiariaProps{
-    params:{id:string}
+    params:{id:string, cod_obra: string}
 }
 
 export default function ParteDiaria({params}: ParteDiariaProps){
@@ -21,7 +21,7 @@ export default function ParteDiaria({params}: ParteDiariaProps){
     const [totalInterferencias, setTotalInterferencias] = useState<number>(0)
     
     useEffect(()=> {
-        fetch(`${link}/api/maquinas/addatividade?id=${params.id}`, {
+        fetch(`${link}/api/maquinas/addatividade?id=${params.id}&codigoobra=${params.cod_obra}`, {
             cache: 'no-store'
         })
         .then(item => item.json()).then(tabela => {
@@ -42,6 +42,7 @@ export default function ParteDiaria({params}: ParteDiariaProps){
       })
 
     function atualizarTabela(linha: LinhaTabPartDiaria){
+        console.log(linha)
         setTabelaPD(a => [linha, ...a])
     }
 
@@ -134,11 +135,13 @@ export default function ParteDiaria({params}: ParteDiariaProps){
                     </div>
                 </div>
                 <div>
+                    {maquina?.ativa? (
                     <FormParteDiaria idMaquina={+params?.id} adicionarLinha={atualizarTabela}/>
+                    ): (null)}
                 </div>
                 <div className='w-full flex mb-24'>
 
-                <TabelaPartesDiarias trazerInfos={importarDados}  maquinaId={Number(params?.id)}/>
+                <TabelaPartesDiarias trazerInfos={importarDados} tabela={tabelaPD}  maquinaId={Number(params?.id)}/>
                 </div>
             </div>
         </div>

@@ -6,13 +6,25 @@ export async function GET(request: NextRequest) {
     const id = Number(searchParams.get("id"))
     const maquina = await prisma.maquina.findUnique({
         where:{
-            id: id
+            id: id,
         }, include:{
             aluguelInfo: true,
             planoManutencao: true,
-            maquina_pesada: {
-                include: {operador: true}
-            }
+            maquina_pesada: {select: {
+                operador: true,
+                alimentacao: true,
+                dimensao_trabalho: true,
+                identificador: true,
+                foto_documento: true,
+                data_vencimento_documento: true,
+                maquinaId: true,
+                operadorCpf: true,
+                artUrl: true,
+                planoManUrl: true
+            }},
+            manutencoes: true,
+            atividades: true,
+            item_associacao: true
             
         }
     })

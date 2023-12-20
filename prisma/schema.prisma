@@ -55,33 +55,45 @@ model User {
 }
 
 model Maquina {
-  id               Int                 @id @default(autoincrement())
-  cod_obra         String?
-  nome             String?
-  modelo           String?
-  imagem           String?             @default("https://source.unsplash.com/featured/300x300?backhoe")
-  acaoNecessaria   Boolean             @default(false)
-  quebrada         Boolean             @default(false)
-  motivo_quebrada  String?
-  origem           String?
-  contador         Float?
-  categoria        String?
-  unidade          String?
-  alimentacao      String?
-  contadorInicial  Float?
-  tipo             String?
-  aluguelInfo      Alugada?
-  atividades       Atividade[]
-  planoManutencao  PlanoManutencao[]
-  maquina_pesada   MaquinaPesada?
-  manutencoes      Manutencao[]
-  item_associacao  ItemAssociacaoEap[]
-  documento        String?
-  data_documento   DateTime?
-  status_documento String?             @default("Pendente")
-  docVitalicio     Boolean?
+  id                   Int                 @id @default(autoincrement())
+  cod_obra             String?
+  nome                 String?
+  modelo               String?
+  imagem               String?             @default("https://source.unsplash.com/featured/300x300?backhoe")
+  acaoNecessaria       Boolean             @default(false)
+  quebrada             Boolean             @default(false)
+  motivo_quebrada      String?
+  origem               String?
+  contador             Float?
+  categoria            String?
+  unidade              String?
+  alimentacao          String?
+  contadorInicial      Float?
+  tipo                 String?
+  aluguelInfo          Alugada?
+  atividades           Atividade[]
+  planoManutencao      PlanoManutencao[]
+  maquina_pesada       MaquinaPesada?
+  manutencoes          Manutencao[]
+  item_associacao      ItemAssociacaoEap[]
+  historico            HistoricoMaquina[]
+  documento            String?
+  data_documento       DateTime?
+  status_documento     String?             @default("Pendente")
+  docVitalicio         Boolean?
+  ativa                Boolean?            @default(true)
+  data_inicio_servicos DateTime?           @default(now())
 
   @@map("maquinas")
+}
+
+model HistoricoMaquina {
+  id           Int       @id @default(autoincrement())
+  cod_obra     String?
+  maquinaId    Int
+  maquina      Maquina   @relation(fields: [maquinaId], references: [id])
+  data_inicial DateTime  @default(now())
+  data_final   DateTime?
 }
 
 model Manutencao {
@@ -136,6 +148,7 @@ model Atividade {
   eap                   ItemEap         @relation(fields: [eapId], references: [item])
   eapId                 String
   apontadorId           Int
+  cod_obra              String?
 
   @@map("atividades")
 }
@@ -190,7 +203,7 @@ model TipoAtividade {
   id               Int                 @id @default(autoincrement())
   nome             String?
   unidade          String?
-  items_associacao ItemAssociacaoEap[] 
+  items_associacao ItemAssociacaoEap[]
 
   @@map("tipo_atividade")
 }

@@ -6,7 +6,8 @@ export async function GET(request: NextRequest) {
     const codigo = searchParams.get("codigoobra")
     console.log(codigo)
     const maquinas = await prisma.maquina.findMany({where:{
-        cod_obra: codigo
+        cod_obra: codigo,
+        ativa: true
     }})
     if(maquinas){
         return NextResponse.json(maquinas)

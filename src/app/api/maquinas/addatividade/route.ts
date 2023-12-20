@@ -5,9 +5,11 @@ import LinhaTabPartDiaria from "@/model/LinhaTabPartDiaria"
 export async function GET(request: NextRequest) {
     const {searchParams} = new URL(request.url)
     const id = Number(searchParams.get("id"))
+    const codigoobra = searchParams.get("codigoobra")
     const atividade = await prisma.atividade.findMany({
         where:{
             maquinaId: id
+
         },include:{
             interferencias: true,
             apontador: true,
@@ -22,7 +24,7 @@ export async function POST(request: Request) {
     if(atividade){   
         try{
             console.log(atividade)
-            const mauqina = await prisma.atividade.create({
+            const atividadeAdd = await prisma.atividade.create({
                 data:{
                     data_final_trabalho: atividade.data_final_trabalho,
                     data_inicial_trabalho: atividade.data_inicial_trabalho,
@@ -30,6 +32,7 @@ export async function POST(request: Request) {
                     horimetro_inicial: atividade.horimetro_inicial,
                     horimetro_final: atividade.horimetroFinal,
                     operador: atividade.operador,
+                    cod_obra: atividade.cod_obra?.toString(),
                     maquina: {
                         connect: {
                             id: atividade.idMaquina
@@ -44,10 +47,14 @@ export async function POST(request: Request) {
                     }
                 }
                 
-        }})
+        },include: {
+            interferencias: true,
+            apontador: true
+        }
+    })
             
             
-            return NextResponse.json("Adicionado com sucesso!")
+            return NextResponse.json({msg: "Adicionado com sucesso", atividade: atividadeAdd}, {status: 200})
         } catch(e){
             return NextResponse.json({erro: e}, {status: 406})
         }

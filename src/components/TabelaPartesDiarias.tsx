@@ -1,29 +1,16 @@
-'use client'
+
 import LinhaTabPartDiaria from "@/model/LinhaTabPartDiaria"
-import { useEffect, useState } from "react"
-import link from "@/app/pathspers"
 
 interface TabelaPartesDiariasProps{
     maquinaId: number | undefined
     trazerInfos: (infos: LinhaTabPartDiaria[]) => void
+    tabela: LinhaTabPartDiaria[]
     
 
 }
 
 export default function TabelaPartesDiarias(props: TabelaPartesDiariasProps){
-    const [tabelaPD, setTabelaPD] = useState<LinhaTabPartDiaria[]>([])
-    const [carregando, setCarregando] = useState(true)
-    useEffect(()=> {
-        fetch(`${link}/api/maquinas/addatividade?id=${props.maquinaId}`, {
-            cache: 'no-store'
-        })
-        .then(item => item.json()).then(tabela => {
-            setTabelaPD(tabela)
-            setCarregando(false)
-            props.trazerInfos(tabela)
-            console.log(tabela)
-    })
-    }, [])
+    
     const formato = new Intl.DateTimeFormat("pt-BR", {
         day: 'numeric',
         month: 'numeric',
@@ -34,7 +21,7 @@ export default function TabelaPartesDiarias(props: TabelaPartesDiariasProps){
     hour: "numeric",
     minute: "numeric",
     })
-    return ( !carregando ? (
+    return ( 
 <table className="border-collapse w-full m-2">
             <thead>
                 <tr className="bg-gray-300">
@@ -52,7 +39,7 @@ export default function TabelaPartesDiarias(props: TabelaPartesDiariasProps){
                 </tr>
             </thead>
             <tbody className="border-2 border-zinc-300">
-            {tabelaPD?.map((registro: LinhaTabPartDiaria, i:number) => <tr key={i}>
+            {props.tabela?.map((registro: LinhaTabPartDiaria, i:number) => <tr key={i}>
             <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ? 'bg-zinc-100': 'bg-white'}`}>{registro?.eapId}</td>
             <td className={`border-l-2 border-zinc-300 px-5 py-2 ${i%2 === 0 ?
              'bg-zinc-100': 'bg-white'}`}>{formato.format(new Date(registro.data_inicial_trabalho))}</td>
@@ -76,7 +63,7 @@ export default function TabelaPartesDiarias(props: TabelaPartesDiariasProps){
             )}
             </tbody>
         </table>
-    ): (<div className=" flex justify-center flex-grow mt-2">Carregando...</div>)
+  
         
     )
 }

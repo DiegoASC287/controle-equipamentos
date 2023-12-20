@@ -21,7 +21,6 @@ export default function DropOperador(props:{
     const [aberto, setAberto] = useState<boolean>(false)
     useEffect(() => {
         
-        console.log(props.tipo_maquina)
         fetch(`${link}/api/operadorconsulta?tipo=${props.tipo_maquina}`, {
                 cache: 'no-store'
             })

@@ -65,6 +65,7 @@ export default function ExibirPropMaq(props: ExibirPropMaqProps) {
     useEffect(() => {
         setMaquina(props.maquina)
         setOperador(props.maquina?.maquina_pesada?.operador)
+        console.log(props.maquina?.maquina_pesada?.operador)
     }, [])
     function renderizarSelectOpEdit(){
         if(maquina?.tipo && maquina?.tipo.trim() !== ""){
