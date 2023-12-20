@@ -8,6 +8,9 @@ export async function GET(request: NextRequest) {
     const codigoobra = searchParams.get("codigoobra")
     if(codigoobra === "Nenhuma"){
         const atividade = await prisma.atividade.findMany({
+            where:{
+                maquinaId: id
+            },
             include:{
                 interferencias: true,
                 apontador: true,
