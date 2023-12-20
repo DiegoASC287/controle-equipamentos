@@ -6,17 +6,30 @@ export async function GET(request: NextRequest) {
     const {searchParams} = new URL(request.url)
     const id = Number(searchParams.get("id"))
     const codigoobra = searchParams.get("codigoobra")
-    const atividade = await prisma.atividade.findMany({
-        where:{
-            maquinaId: id,
-            cod_obra: codigoobra
-        },include:{
-            interferencias: true,
-            apontador: true,
-            eap: true
-        }
-    })
-    return NextResponse.json(atividade)
+    if(codigoobra === "Nenhuma"){
+        const atividade = await prisma.atividade.findMany({
+            include:{
+                interferencias: true,
+                apontador: true,
+                eap: true
+            }
+        })
+        return NextResponse.json(atividade)
+    }else{
+        const atividade = await prisma.atividade.findMany({
+            where:{
+                maquinaId: id,
+                cod_obra: codigoobra
+            },include:{
+                interferencias: true,
+                apontador: true,
+                eap: true
+            }
+        })
+        return NextResponse.json(atividade)
+    }
+    
+    
 }
 
 export async function POST(request: Request) {
