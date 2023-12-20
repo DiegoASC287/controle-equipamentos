@@ -4,7 +4,7 @@ import ModeloItemEapApelido from "@/model/ModeloItemEAPApelido"
 import { useEffect, useState } from "react"
 import Calendario from "./Calendario"
 import LinhaTabPartDiaria from "@/model/LinhaTabPartDiaria"
-import { IconArrowBigRight, IconX } from "@tabler/icons-react"
+import { IconArrowBigRight, IconCheck, IconX } from "@tabler/icons-react"
 import Maquina from "@/model/Maquina"
 import Apontador from "@/model/Apontador"
 import DropEapApelido from "./DropEapApelido"
@@ -38,6 +38,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
     const [total_combustivel, setVolAbastecido] = useState<Number>(0)
     const [contadorAbastecimento, setContadorAbastecimento] = useState<Number>(0)
     const [observacoes, setObservacoes] = useState<string>("")
+    const [operadorVerificado, setOperadorVerificado] = useState<boolean>(false)
 
     const motivosLista =["","ALMOÇO", "ABASTECIMENTO","DESCLOCAMENTO", "MANUTENÇÃO",
     "CHUVA", "FALTA DE FRENTE", "OUTROS"]
@@ -142,6 +143,8 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         dataFinalTrabalho <= dataInicialTrabalho ? 
         erros.push("Data final de trabalho menor ou igual à data inicial") : null;
 
+        !operadorVerificado? erros.push("Verifique se esse realmente é o operador dessa máquina!") : null;
+
         dataFinalInterf <= dataInicialInterf ? 
         erros.push("Data final de interferência menor ou igual à data inicial") : null;
 
@@ -219,26 +222,43 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             </div>
             <div className="flex flex-col border-r-2 border-zinc-300 pr-3">
             <div className="font-semibold">Registro de atividade</div>
-            <div className="flex justify-between gap-2">
+            <div className="flex  gap-10">
+            <div>
+
+            <label className="text-sm">Data e hora inicial</label>
             <Calendario onChange={setDataInicialTrabalho} value={dataInicialTrabalho} 
             id="dataInicial"
-            legenda="Data e hora inicial"/>
+            legenda=""/>
+            </div>
+            <div>
+            <label className="text-sm">Data e hora final</label>
             <Calendario onChange={setDataFinalTrabalho} value={dataFinalTrabalho} 
             id="dataInicial"
-            legenda="Data e hora final"/>
+            legenda=""/>
             </div>
+            </div>
+
             <label className="text-sm w-full bg-zinc-100 mt-1" >Operador do equipamento</label>
-            <div className="pl-2 bg-zinc-100 border-b-2 border-zinc-300">{maquina?.maquina_pesada?.operador?.nome} {maquina?.maquina_pesada?.operador?.sobrenome}</div>
+            <div className="flex w-full">
+            <div className="pl-2 bg-zinc-100 border-b-2 border-zinc-300 flex-grow">{maquina?.maquina_pesada?.operador?.nome} {maquina?.maquina_pesada?.operador?.sobrenome}</div>
+            <button className={`${operadorVerificado? 'text-green-500': 'text-red-500'}`} onClick={e => setOperadorVerificado(!operadorVerificado)}><IconCheck/></button>
+            </div>
             </div>
             <div className="flex flex-col justify-between border-zinc-300 pr-3">
             <div className="flex gap-5">
             <div className="flex flex-col flex-grow">
             <div className="font-semibold">Interferência</div>
-            <div className="flex gap-3 flex-grow">
+            <div className="flex gap-10 flex-grow">
+            <div>
+            <label className="text-sm">Data e hora inicial</label>
             <Calendario onChange={setDataInicialInterf} value={dataInicialInterf} id="dataInicial"
-            legenda="Data e hora inicial"/>
+            legenda=""/>
+            </div>
+            <div>
+            <label className="text-sm">Data e hora final</label>
             <Calendario onChange={setDataFinalInterf} value={dataFinalInterf} id="dataInicial"
-            legenda="Data e hora final"/>
+            legenda=""/>
+            </div>
             </div>
             </div>
             </div>

@@ -149,7 +149,7 @@ model Atividade {
   eapId                 String
   apontadorId           Int
   cod_obra              String?
-  observacoes String?
+  observacoes           String?
 
   @@map("atividades")
 }
