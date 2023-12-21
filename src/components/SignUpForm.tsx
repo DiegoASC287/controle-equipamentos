@@ -7,7 +7,6 @@ interface mensagemProps{
   msg: string
 }
 export default function SignUpForm(){
-    const [mensagem, setMensagem] = useState<mensagemProps>({status: "pronto", msg: ""})
     const [msgFinal, setMsgFinal] = useState<{status: 'erro' | 'carregando' | 'pronto'| 'ok', msgs: string[]}>()
     const [data, setData] = useState({
         name: '',

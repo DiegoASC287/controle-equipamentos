@@ -5,7 +5,7 @@ import MaquinaFoto from "@/components/MaquinaFoto";
 import BotaoPartDiaria from "@/components/BotaoPartDiaria";
 import link from "@/app/pathspers";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Maquina from "@/model/Maquina";
 import ExibirPropMaq from "@/components/ExibirPropMaq";
 import OperadorProps from "@/model/OperadorProps";
@@ -14,13 +14,16 @@ import { IconCheck, IconFileArrowLeft, IconFileArrowRight, IconTrash } from "@ta
 import { Tooltip } from "@nextui-org/react";
 import DropObras from "@/components/DropObras";
 import Obra from "@/model/Obra";
+import MaquinaContext from "@/data/context/maquina/MaquinaContext";
 
 interface PageDetailProps {
     params: { id: string }
 }
 
 
-export default async function PaginaMostrarMaquina() {
+export default function PaginaMostrarMaquina() {
+    const ctx = useContext(MaquinaContext)
+    
 
     const [maquina, setMaquina] = useState<Maquina>()
     const [editando, setEditando] = useState<boolean>(false)
@@ -35,15 +38,9 @@ export default async function PaginaMostrarMaquina() {
 
 
     useEffect(() => {
-        fetch(`${link}/api/maquinas/consulta?id=${id}`,
-            {
-                cache: 'no-cache'
-            })
-            .then(item => item.json()).then(maq => {
-                setMaquina(maq)
-                setCarregando(false)
-            })
-    }, [])
+        console.log(ctx)
+        setMaquina(ctx?.maquina)
+    }, [ctx])
 
     function deletarMaquina(){
         

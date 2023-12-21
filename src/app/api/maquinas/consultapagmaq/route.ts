@@ -24,10 +24,6 @@ export async function GET(request: NextRequest) {
                 artUrl: true,
                 planoManUrl: true
             }},
-            manutencoes: true,
-            atividades: true,
-            item_associacao: true
-            
         }
     })
     return NextResponse.json(maquina)

@@ -1,26 +1,21 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Celula from "./Celula";
 import Maquina from "@/model/Maquina";
 import CelulaAluguelInfo from "./CelulaAluguelInfo";
 import Link from 'next/link'
 import link from "@/app/pathspers";
+import MaquinaContext from "@/data/context/maquina/MaquinaContext";
 interface DescricaoAlugadoProps{
     id: number | undefined
 }
 
 export default function DescricaoAlugado(props: DescricaoAlugadoProps){
+    const ctx = useContext(MaquinaContext)
     const [maquina, setMaquina] = useState<Maquina>()
     const [carregando, setCarregando] = useState<boolean>(true)
     useEffect(()=> {
-        fetch(`${link}/api/maquinas/consulta?id=${props.id}`, 
-        {
-            cache:'no-store'
-        })
-        .then(item => item.json()).then(maq => {
-            setMaquina(maq)
-            setCarregando(false)
-        })
+        setMaquina(ctx?.maquina)
     }, [])
 
     const formato = new Intl.DateTimeFormat("pt-BR", {
