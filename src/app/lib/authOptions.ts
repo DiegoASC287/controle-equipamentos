@@ -26,6 +26,7 @@ export const authOptions: NextAuthOptions = {
                         email
                     }
                 })
+                console.log(user)
                 if(!user){
                     return null
                 }
@@ -36,7 +37,7 @@ export const authOptions: NextAuthOptions = {
                 if(!passwordMatch){
                     return null
                 }
-                return user
+                return {id: user.id, email: user.email, name: user.name, image: user.image, papel: user.papel}
             },
 
         })
@@ -47,12 +48,13 @@ export const authOptions: NextAuthOptions = {
     },
     session: {
         strategy: "jwt",
-        maxAge: 30*24*60*60,
+        maxAge: 24*60*60,
         updateAge: 24*60*60
     },callbacks:{
         async session(params: {session: Session; token: JWT, user: User}){
             if(params.session.user){
                 params.session.user.email = params.token.email
+                params.session.papel = params.token.papel
             }
 
             return params.session
@@ -66,6 +68,7 @@ export const authOptions: NextAuthOptions = {
         }){
             if(params.user){
                 params.token.email = params.user.email
+                params.token.papel = params.user.papel
             }
             return {...params.token};
 

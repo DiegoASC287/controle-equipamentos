@@ -2,6 +2,7 @@
 import { signIn, useSession} from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import {useEffect, useState} from 'react'
+import Link from 'next/link'
 
 interface MensagemProps{
     status: 'ok' | 'deny' | 'carregando' | 'pronto'
@@ -62,7 +63,7 @@ export default function SignInForm(){
         }
       }
     return (
-        <div className='flex justify-center items-center h-full'>
+        <div className='flex justify-center items-center h-screen '>
 
         <div className='flex flex-col w-full sm:w-1/3 bg-zinc-100 shadow-md shadow-zinc-400 p-3 rounded-lg gap-3'>
           
@@ -78,11 +79,13 @@ export default function SignInForm(){
           </div>
 
           <button className='bg-red-800 text-white hover:bg-red-900 p-2' onClick={handleSubmit}>Login</button>
+          
         <div>
-            <p></p>
-
         {renderizarAviso()}
         </div>
+        <Link href={"/auth/signup"}>
+        <div className='text-blue-800 hover:cursor-pointer hover:text-blue-600'>Cadastrar-se</div>
+        </Link>
         </div>
         </div>
     )

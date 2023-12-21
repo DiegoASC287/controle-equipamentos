@@ -7,6 +7,7 @@ import { authOptions } from "@/app/lib/authOptions";
 
 export default async function BarraCabecalho(){
     const session = await getServerSession(authOptions)
+
     return (
         <div className={`h-[50px] flex justify-between bg-red-900 border-b-1 border-zinc-500 rounded-none shadow-md shadow-zinc-300`}>
             <div className="flex justify-start items-center gap-10 text-white">
@@ -16,7 +17,7 @@ export default async function BarraCabecalho(){
             </Link>
             </div>
             <div className="flex items-center px-5 text-white gap-5 font-bold">
-            <span className="hidden sm:inline">{session && session.user?.name}</span>
+            <span className="hidden sm:inline">{session && session.user?.name} - {session && session.papel}</span>
             
             {session?.user? (
                 <>
