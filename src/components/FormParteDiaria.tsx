@@ -181,7 +181,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
                 data_inicial_trabalho: dataInicialTrabalho,
                 descricao_serv: descricaoServ,
                 motivoInterf: motivoInterf,
-                operador: maquina?.maquina_pesada?.operador?.nome,
+                operador: `${maquina?.maquina_pesada?.operador?.nome} ${maquina?.maquina_pesada?.operador?.sobrenome}`,
                 interferencias: listaInterfs.map((e:FormatoInterferencia)=> ({hora_inicial: e.hora_inicial,
                      hora_final: e.hora_final, motivo: e.motivo,
                      contador: e.contador, total_combustivel: e.total_combustivel, preco_combustivel: e.preco_combustivel})),
@@ -313,13 +313,13 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             <div className="flex">
                 <div>
 
-            <label className="text-sm w-full bg-zinc-100" >Horímetro inicial</label>
+            <label className="text-sm w-full bg-zinc-100" >{maquina?.unidade === "h" ? "Horímetro" : "odômetro"} inicial</label>
             <input type="number" placeholder="Digite..." className="pl-2 bg-zinc-100 border-b-2 border-zinc-300 w-32" value={horimetroInicial}
             onChange={e => setHorimetroInicial(+e.target.value)}/>
             </div>
                 <div>
 
-            <label className="text-sm w-full bg-zinc-100" >Horímetro final</label>
+            <label className="text-sm w-full bg-zinc-100" >{maquina?.unidade === "h" ? "Horímetro" : "odômetro"} final</label>
             <input type="number" placeholder="Digite..." className="pl-2 bg-zinc-100 border-b-2 border-zinc-300 w-32" value={horimetroFinal}
             onChange={e => setHorimetroFinal(+e.target.value)}/>
             </div>
