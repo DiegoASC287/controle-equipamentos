@@ -1,10 +1,7 @@
 'use client'
 import { useContext, useEffect, useState } from "react";
-import Celula from "./Celula";
 import Maquina from "@/model/Maquina";
 import CelulaAluguelInfo from "./CelulaAluguelInfo";
-import Link from 'next/link'
-import link from "@/app/pathspers";
 import MaquinaContext from "@/data/context/maquina/MaquinaContext";
 interface DescricaoAlugadoProps{
     id: number | undefined

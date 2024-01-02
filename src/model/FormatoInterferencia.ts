@@ -4,5 +4,6 @@ export default interface FormatoInterferencia {
     hora_final: Date
     motivo: string
     total_combustivel?: Number
+    preco_combustivel?: Number
     contador?: Number
 }

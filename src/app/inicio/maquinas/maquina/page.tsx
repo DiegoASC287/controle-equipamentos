@@ -38,7 +38,6 @@ export default function PaginaMostrarMaquina() {
 
 
     useEffect(() => {
-        console.log(ctx)
         setMaquina(ctx?.maquina)
     }, [ctx])
 

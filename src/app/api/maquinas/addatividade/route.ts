@@ -45,7 +45,7 @@ export async function POST(request: Request) {
                     data_inicial_trabalho: atividade.data_inicial_trabalho,
                     descricao_serv: atividade.descricao_serv,
                     horimetro_inicial: atividade.horimetro_inicial,
-                    horimetro_final: atividade.horimetroFinal,
+                    horimetro_final: atividade.horimetro_final,
                     operador: atividade.operador,
                     cod_obra: atividade.cod_obra?.toString(),
                     observacoes: atividade.observacoes,

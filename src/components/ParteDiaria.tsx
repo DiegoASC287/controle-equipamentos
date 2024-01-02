@@ -6,6 +6,7 @@ import TabelaPartesDiarias from "./TabelaPartesDiarias"
 import { Maquina } from "@prisma/client"
 import Calendario from "./Calendario"
 import link from "@/app/pathspers"
+import BotaoPartDiariaPDF from "./BotaoPartDiariaPDF"
 
 interface ParteDiariaProps{
     params:{id:string, cod_obra: string}
@@ -143,6 +144,7 @@ export default function ParteDiaria({params}: ParteDiariaProps){
 
                 <TabelaPartesDiarias trazerInfos={importarDados} tabela={tabelaPD}  maquinaId={Number(params?.id)}/>
                 </div>
+                <BotaoPartDiariaPDF/>
             </div>
         </div>
     )

@@ -15,7 +15,7 @@ export default interface LinhaTabPartDiaria{
     registroNovo: boolean
     interferencias: FormatoInterferencia[]
     horimetro_inicial?: number
-    horimetroFinal?: number
+    horimetro_final?: number
     apontadorId: number
     apontador?: Apontador
     eap?: any

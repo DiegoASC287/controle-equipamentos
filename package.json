@@ -17,6 +17,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.7",
     "@nextui-org/react": "^2.2.9",
     "@prisma/client": "^5.7.0",
+    "@react-pdf/renderer": "^3.1.14",
     "@tabler/icons": "^2.40.0",
     "@tabler/icons-react": "^2.40.0",
     "@tippyjs/react": "^4.2.6",
