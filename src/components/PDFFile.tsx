@@ -181,7 +181,7 @@ export default function PDFFile({obra, maquina, listaPartDiaria, periodoInicio, 
         relatorio.total_abastecido = listaCombs.reduce((ant, prox) => Number(ant) + Number(prox), 0)
         relatorio.custo_abastecimento = custosCombs.reduce((ant, prox) => Number(ant) + Number(prox), 0)
         relatorio.total_trabalhadas = listaHorasTrab.reduce((ant, prox) => Number(ant) + Number(prox), 0)
-        relatorio.consumo = Number(relatorio.total_abastecido) - Number(relatorio.total_trabalhadas)
+        relatorio.consumo = Number(relatorio.total_trabalhadas)/Number(relatorio.total_abastecido)
         relatorio.total_interferencias = listaHorasointer.reduce((ant, prox) => Number(ant) + Number(prox), 0)
         return (
             <View style={{
