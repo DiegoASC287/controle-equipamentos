@@ -62,6 +62,10 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         }).then(resp => resp.json()).then(result => {
             alert(result.msg)
             props.adicionarLinha(result?.atividade)
+            fetch('/api/uplog', {
+                method: 'POST',
+                body: JSON.stringify({descricao: `Adicionada a atividade: ${JSON.stringify(result.atividade)}`})
+            })
         })
 
         if(horimetroFinal && maquina?.contador){

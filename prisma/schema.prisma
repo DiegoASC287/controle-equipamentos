@@ -228,6 +228,13 @@ model MaquinaPesada {
   @@map("categoria_maquinas_pesadas")
 }
 
+model Log {
+  id        Int      @id @default(autoincrement())
+  email     String
+  data      DateTime? @default(now())
+  descricao String
+}
+
 model TemplatePlanoManutencoes {
   id           Int    @id @default(autoincrement())
   tipo_veiculo String

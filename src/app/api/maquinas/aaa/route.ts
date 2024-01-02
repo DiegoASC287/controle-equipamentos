@@ -5,10 +5,10 @@ export async function POST(request: Request) {
         try{
             const mauqina = await prisma.user.update({
                 where: {
-                    id: 'clq71dhg20000z4x6b20h76qs'
+                    id: 'clq70czsf0000j4xbadq1t8sa'
                 },
                 data:{
-                    papel: 'Criador'
+                    papel: 'Assistente de planejamento'
                 }
                 
             })

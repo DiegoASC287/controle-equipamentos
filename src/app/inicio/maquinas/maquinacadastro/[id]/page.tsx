@@ -175,6 +175,10 @@ export default function PaginaCadastrarMaquina({
                     }).then(resp => resp.json()).then(result => {
                         setMaquinaAdicionada(result)
                         docUpload(result.id)
+                        fetch('/api/uplog', {
+                            method: 'POST',
+                            body: JSON.stringify({descricao: `Adicionada máquina: ${maquinaAdicionada?.nome} modelo: ${maquinaAdicionada?.modelo} id: ${maquinaAdicionada?.id}`})
+                        })
                     })
 
                 } break;
@@ -229,6 +233,7 @@ export default function PaginaCadastrarMaquina({
             }).then(async (res) => res.json()).then(({ url }) => {
                 setPlanoManUrl(url)
             })
+
         ])
     }
 
