@@ -37,6 +37,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: Request) {
     const atividade:LinhaTabPartDiaria = await request.json()
+    console.log(atividade)
     if(atividade){   
         try{
             const atividadeAdd = await prisma.atividade.create({

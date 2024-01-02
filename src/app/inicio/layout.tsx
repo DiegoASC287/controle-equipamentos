@@ -10,10 +10,8 @@ const cargos = ["Assistente de planejamento", "Gerente de planejamento", "Direto
 
 export default async function LayoutPagina({ children }: LayoutProps) {
     const session = await getServerSession(authOptions)
-    console.log(cargos.includes(session?.papel ? session?.papel : ""))
     
     function renderizarDados() {
-        console.log(session?.papel)
         if (!(session && session.user)) {
             return (
                 <div className="bg-zinc-100 h-screen flex justify-center items-center flex-col">

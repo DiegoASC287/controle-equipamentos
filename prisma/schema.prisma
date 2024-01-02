@@ -160,6 +160,7 @@ model Interferencia {
   hora_final        DateTime?
   motivo            String?
   total_combustivel Float?
+  preco_combustivel Float?
   contador          Float?
   atividade         Atividade @relation(fields: [atividadeId], references: [id])
   atividadeId       Int

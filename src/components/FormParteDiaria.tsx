@@ -36,6 +36,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
     const [eap, setEap] = useState<ModeloItemEapApelido[]>()
     const [selectItemEap, setSelectItemEap] = useState<ModeloItemEapApelido>()
     const [total_combustivel, setVolAbastecido] = useState<Number>(0)
+    const [preco_combustivel, setPrecoAbastecido] = useState<Number>(0)
     const [contadorAbastecimento, setContadorAbastecimento] = useState<Number>(0)
     const [observacoes, setObservacoes] = useState<string>("")
     const [operadorVerificado, setOperadorVerificado] = useState<boolean>(false)
@@ -53,6 +54,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         minute: "numeric",
       })
       function addAtividade(atividade: LinhaTabPartDiaria){
+        console.log(atividade)
         fetch(`${link}/api/maquinas/addatividade?id=${props.idMaquina}`, {
             method: 'POST',
             cache: 'no-store',
@@ -117,9 +119,9 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
 
     function adicionarInterfAlista(){
         if (motivoInterf === "ABASTECIMENTO"){
-            if(total_combustivel !==0 && contadorAbastecimento !== 0){
+            if(total_combustivel !==0 && contadorAbastecimento !== 0 && preco_combustivel !== 0){
 
-                setListaInterfs(valor => [{total_combustivel:total_combustivel, contador: contadorAbastecimento ,hora_inicial:dataInicialInterf,
+                setListaInterfs(valor => [{preco_combustivel: preco_combustivel, total_combustivel:total_combustivel, contador: contadorAbastecimento ,hora_inicial:dataInicialInterf,
                     hora_final: dataFinalInterf, motivo: motivoInterf, id: (Math.random()*1000).toFixed(0)}, ...valor])
                 }else{
                     alert(`Preencha os campos Val abastecido e ${maquina?.unidade === "h" ? 'horímetro': 'odômetro'}`)
@@ -167,7 +169,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         
 
         if (erros.length == 0){
-            const ativi = {
+            const ativi: LinhaTabPartDiaria = {
                 idMaquina: props.idMaquina,
                 dataFinalInterf: dataFinalInterf,
                 data_final_trabalho: dataFinalTrabalho,
@@ -178,9 +180,9 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
                 operador: maquina?.maquina_pesada?.operador?.nome,
                 interferencias: listaInterfs.map((e:FormatoInterferencia)=> ({hora_inicial: e.hora_inicial,
                      hora_final: e.hora_final, motivo: e.motivo,
-                     contador: e.contador, total_combustivel: e.total_combustivel})),
+                     contador: e.contador, total_combustivel: e.total_combustivel, preco_combustivel: e.preco_combustivel})),
                 registroNovo: true,
-                horimetroFinal: horimetroFinal,
+                horimetro_final: horimetroFinal,
                 horimetro_inicial: horimetroInicial,
                 apontadorId: Number(apontador.split("-")[0]),
                 eapId: selectItemEap?.itemEap.trim(),
@@ -269,6 +271,10 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
                 {motivosLista.map((motivo,i) => <option key={i}>{motivo}</option>)}
             </select>
             <div className={`${motivoInterf === "ABASTECIMENTO" ? 'block': 'hidden'}`}>
+                <div className="flex justify-between items-center">
+                {"Preço do combustível (R$/l)"}
+                <input type="number" className="mt-2 ml-2" value={+preco_combustivel} onChange={e => setPrecoAbastecido(+e.target.value)} />
+                </div>
                 <div className="flex justify-between items-center">
                 {"Vol abastecido (L)"}
                 <input type="number" className="mt-2 ml-2" value={+total_combustivel} onChange={e => setVolAbastecido(+e.target.value)} />
