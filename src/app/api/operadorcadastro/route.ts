@@ -16,7 +16,6 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: Request) {
     const corpo:OperadorProps = await request.json()
-    console.log(corpo)
     if(corpo){    
     const operador = await prisma.operador.create({
         data:{
@@ -27,7 +26,7 @@ export async function POST(request: Request) {
             sobrenome: corpo.sobrenome,
         }
     })
-    return NextResponse.json("Adicionado com sucesso!")
+    return NextResponse.json({msg: "Adicionado com sucesso!"})
 }
-    return new NextResponse("Erro", {status: 401})
+    return NextResponse.json({msg: "Erro"})
 }

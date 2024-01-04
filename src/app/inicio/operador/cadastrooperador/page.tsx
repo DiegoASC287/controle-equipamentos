@@ -47,6 +47,7 @@ export default function PaginaCadastroOperador({
     const [numCertTemp, setNumCertTemp] = useState<string | undefined>(undefined)
     const [fileTemp, setFileTempCert] = useState<File | null>()
 
+
     const formato = new Intl.DateTimeFormat("pt-BR", {
         day: 'numeric',
         month: 'numeric',
@@ -63,7 +64,7 @@ export default function PaginaCadastroOperador({
             fetch('/api/cadastrocertificado', {
                 method: 'POST',
                 body: JSON.stringify(certificadoCurrent)
-            }).then(res => res.json()).then(resposta => { alert("Adicionado com sucesso")})
+            }).then(res => res.json()).then()
             
             
         })
@@ -159,6 +160,7 @@ export default function PaginaCadastroOperador({
                     }).then(resp => resp.json()).then(result => {
                         listaCertificacoes.map(async (e) => {
                             await uploadFoto(e, op.cpf)})
+                        alert(result.msg)  
                     })
     
                 }

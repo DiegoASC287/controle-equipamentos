@@ -361,7 +361,7 @@ export default function PaginaCadastrarMaquina({
                             <option className='text-right'>Alugado</option>
                         </select>
                     </div>
-                    {selecionarOrigem === "Alugado" ? <AddAlugado onChange={atualizarDadosAluguel}
+                    {selecionarOrigem === "Alugado" ? <AddAlugado unidade={unidade} onChange={atualizarDadosAluguel}
                         value={aluguelInfo} /> : <div>Próprio</div>}
 
                 </div>

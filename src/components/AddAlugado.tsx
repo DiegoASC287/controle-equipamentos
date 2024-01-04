@@ -8,6 +8,7 @@ import AluguelInfoProps from "@/model/AluguelInfo";
 interface AddAlugadoProps{
     value?: AluguelInfoProps
     onChange: (novoValor: AluguelInfoProps) => void
+    unidade: string
 }
 export default function AddAlugado(props: AddAlugadoProps){
 
@@ -34,7 +35,7 @@ export default function AddAlugado(props: AddAlugadoProps){
                 <InputManutencao type="text" texto="Fornecedor" onChange={setFornecedor} value={fornecedor}/>
                 </div>
                 <div className="bg-gray-300 flex flex-col justify-around min-w-max pt-1">
-                <InputManutencao type="number" texto="Limite" onChange={setLimite} value={limite}/>
+                <InputManutencao type="number" texto={`Limite de ${props.unidade === 'h' ? "horas": "quilômetros"}`} onChange={setLimite} value={limite}/>
                 </div>
             </div>
         </div>
