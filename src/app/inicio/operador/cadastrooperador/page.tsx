@@ -46,6 +46,7 @@ export default function PaginaCadastroOperador({
     const [dataCertTemp, setDataCertTemp] = useState<Date>(new Date)
     const [numCertTemp, setNumCertTemp] = useState<string | undefined>(undefined)
     const [fileTemp, setFileTempCert] = useState<File | null>()
+    const [carregando, setCarregando] = useState<boolean>(false)
 
 
     const formato = new Intl.DateTimeFormat("pt-BR", {
@@ -129,7 +130,7 @@ export default function PaginaCadastroOperador({
     }
 
     function addOperador(op: OperadorProps) {
-
+        
         const errosOp =[]
 
         if (!op.cpf || op.cpf.trim() === ""){
@@ -152,7 +153,8 @@ export default function PaginaCadastroOperador({
                 method: 'GET', cache: "no-cache"
             }).then(resp => resp.json()).then(result => {
                 if(result){
-                    alert("Já existe um usuário com esse email")
+                    alert("Já existe um usuário com esse CPF")
+                    setCarregando(false) 
                 }else{
                     fetch(`${link}/api/operadorcadastro`, {
                         method: 'POST',
@@ -160,7 +162,8 @@ export default function PaginaCadastroOperador({
                     }).then(resp => resp.json()).then(result => {
                         listaCertificacoes.map(async (e) => {
                             await uploadFoto(e, op.cpf)})
-                        alert(result.msg)  
+                        alert(result.msg) 
+                        setCarregando(false) 
                     })
     
                 }
@@ -294,14 +297,17 @@ export default function PaginaCadastroOperador({
                     </div>
                 </div>
                 <button
-                    className="col-span-full p-2 border-2 mb-1 mt-3 bg-red-800 hover:bg-red-900 text-white font-bold w-full"
-                    onClick={e => addOperador({
+                    className={`col-span-full p-2 border-2 mb-1 mt-3 bg-red-800 hover:bg-red-900 text-white font-bold w-full ${carregando? 'hover:cursor-wait':""}`}
+                    disabled={carregando}
+                    onClick={e => {
+                        setCarregando(true)
+                        addOperador({
                         cpf: cpfInput,
                         idade:idadeInput,
                         nome: nomeInput,
                         imagem_url: imagemOp? imagemOp:"/",
                         sobrenome: sobrenomeInput,
-                         })}>Cadastrar operador</button>
+                         })}}>Cadastrar operador</button>
 
             </div>
 
