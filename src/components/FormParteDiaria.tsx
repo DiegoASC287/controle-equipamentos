@@ -54,7 +54,6 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         minute: "numeric",
       })
       function addAtividade(atividade: LinhaTabPartDiaria){
-        console.log(atividade)
         fetch(`${link}/api/maquinas/addatividade?id=${props.idMaquina}`, {
             method: 'POST',
             cache: 'no-store',
@@ -157,13 +156,14 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         erros.push("Data final de interferência menor ou igual à data inicial") : null;
 
         if(ficouSemFrente.length > 0){
-            if(listaInterfs.length >= ficouSemFrente.length){
+        
+            if(listaInterfs.length > ficouSemFrente.length){
                 (horimetroFinal && horimetroInicial? horimetroFinal <= horimetroInicial: false) ? 
-                erros.push("Horímetro final menor ou igual à data inicial") : null;
+                erros.push("Horímetro final menor ou igual ao horímetro inicial") : null;
             }
         }else{
             (horimetroFinal && horimetroInicial? horimetroFinal <= horimetroInicial: false) ? 
-            erros.push("Horímetro final menor ou igual à data inicial") : null;
+            erros.push("Horímetro final menor ou igual ao horímetro inicial") : null;
 
         }
 
