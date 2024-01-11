@@ -121,9 +121,7 @@ export default function PaginaCadastrarMaquina({
         const maqPesadaCur:Maquina = { ...maq, maquina_pesada: maquinaPesada, cod_obra: codigo? codigo: ""}
         const erros = []
 
-        if (!fileDoc) {
-            erros.push("Falta selecionar o documento da máquina!")
-        }
+        
         if (!maqPesadaCur.imagem) {
             erros.push("Selecione uma imagem para esta máquina")
         }
