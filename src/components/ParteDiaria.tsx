@@ -3,10 +3,12 @@ import LinhaTabPartDiaria from "@/model/LinhaTabPartDiaria"
 import { useEffect, useState } from "react"
 import FormParteDiaria from "./FormParteDiaria"
 import TabelaPartesDiarias from "./TabelaPartesDiarias"
-import { Maquina } from "@prisma/client"
+import Maquina from "@/model/Maquina"
 import Calendario from "./Calendario"
 import link from "@/app/pathspers"
 import BotaoPartDiariaPDF from "./BotaoPartDiariaPDF"
+import MaquinaContext from "@/data/context/maquina/MaquinaContext"
+import Obra from "@/model/Obra"
 
 interface ParteDiariaProps{
     params:{id:string, cod_obra: string}
@@ -20,7 +22,17 @@ export default function ParteDiaria({params}: ParteDiariaProps){
     const [horimetroInicialDia, setHorimetroInicialDia] = useState<number>()
     const [horimetroFinalDia, setHorimetroFinalDia] = useState<number>()
     const [totalInterferencias, setTotalInterferencias] = useState<number>(0)
-    
+    const [obra, setObra] = useState<Obra>()
+
+    useEffect(()=> {
+        fetch(`${link}/api/obras/cadastro?codigo=${params.cod_obra}`, {
+            cache: 'no-store'
+        })
+        .then(item => item.json()).then(obraCur => {
+            setObra(obraCur)})
+    }, []) 
+
+
     useEffect(()=> {
         fetch(`${link}/api/maquinas/addatividade?id=${params.id}&codigoobra=${params.cod_obra}`, {
             cache: 'no-store'
@@ -98,8 +110,8 @@ export default function ParteDiaria({params}: ParteDiariaProps){
 
                     <ul className='grid grid-cols-3  p-5  '>
                         <li className='col-span-full font-semibold text-lg text-left 
-                        border-b-2 border-zinc-700 pb-1'>Parte diária - {maquina?.nome}, C.C. 034 - Adutora de Boqueirao</li>
-                        <li className='text-left col-span-full font-semibold'>FORN: <span className='font-normal'>Catita</span></li>
+                        border-b-2 border-zinc-700 pb-1'>Parte diária - {maquina?.nome}, {obra?.nome}</li>
+                        <li className='text-left col-span-full font-semibold'>FORN: <span className='font-normal'>{maquina?.aluguelInfo?.fornecedor}</span></li>
                         <li className='text-left font-semibold'>MODELO 
                         <div className='font-normal'>{maquina?.modelo}</div>
                         </li>

@@ -138,6 +138,8 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
 
     function tratarEntrada(){
 
+        const ficouSemFrente = listaInterfs.filter(e => e.motivo === "FALTA DE FRENTE")
+
         const erros: string[] = []
         apontador?.trim() === "" ? erros.push("Selecione um apontador"):null;
         selectItemEap?.apelido.trim() === "" ? erros.push("Selecione um item da EAP"):null;
@@ -154,8 +156,17 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         dataFinalInterf <= dataInicialInterf ? 
         erros.push("Data final de interferência menor ou igual à data inicial") : null;
 
-        (horimetroFinal && horimetroInicial? horimetroFinal <= horimetroInicial : false) ? 
-        erros.push("Horímetro final menor ou igual à data inicial") : null;
+        if(ficouSemFrente.length > 0){
+            if(listaInterfs.length >= ficouSemFrente.length){
+                (horimetroFinal && horimetroInicial? horimetroFinal <= horimetroInicial: false) ? 
+                erros.push("Horímetro final menor ou igual à data inicial") : null;
+            }
+        }else{
+            (horimetroFinal && horimetroInicial? horimetroFinal <= horimetroInicial: false) ? 
+            erros.push("Horímetro final menor ou igual à data inicial") : null;
+
+        }
+
 
         (dataInicialInterf < dataInicialTrabalho) ? 
         erros.push("Hora inicial de interferência menor que hora inicial de trabalho") : null;

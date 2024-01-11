@@ -14,7 +14,8 @@ import Uploader from '@/components/Uploader';
 import { alimentacaoLista, categorias, tipo, un, tiposManutencao } from '@/app/constants/constantes';
 import Uploader_pdf_img from '@/components/Uploader_pdf_img';
 import Calendario from '@/components/Calendario';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
+
 
 interface PageDetailProps {
     params: { id: string }
@@ -62,7 +63,9 @@ export default function PaginaCadastrarMaquina({
     const [dataVDocumento, setDataVDocumento] = useState<Date>(new Date())
     const [docVitalicio, setDocVitalicio] = useState<boolean>(false)
 
+    
     const [maquinaAdicionada, setMaquinaAdicionada] = useState<Maquina>()
+    const router = useRouter()
 
     function atImgCert(imagem: { image: string | null, }, file: File | null) {
         setImgDoc(imagem)
@@ -177,6 +180,7 @@ export default function PaginaCadastrarMaquina({
                             method: 'POST',
                             body: JSON.stringify({descricao: `Adicionada máquina: ${maquinaAdicionada?.nome} modelo: ${maquinaAdicionada?.modelo} id: ${maquinaAdicionada?.id}`})
                         })
+                        router.push(`/inicio/cadastro?codigoobra=${codigo}`)
                     })
 
                 
