@@ -10,9 +10,10 @@ export async function GET(request: NextRequest) {
         }, include: {
             maquina_pesada: {
                 include: {
-                    operador: true
+                    operador: true,
                 }
-            }
+            },
+            aluguelInfo: true
         }
     })
     return NextResponse.json(maquina)

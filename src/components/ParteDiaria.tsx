@@ -46,8 +46,11 @@ export default function ParteDiaria({params}: ParteDiariaProps){
         })
         .then(item => item.json()).then(maq => {
             setMaquina(maq)
+            
     })
     }, [])   
+
+    useEffect(() => {console.log(maquina)}, [maquina])
 
     const formato2 = new Intl.DateTimeFormat("pt-BR", {
         day: "numeric",
@@ -55,7 +58,7 @@ export default function ParteDiaria({params}: ParteDiariaProps){
       })
 
     function atualizarTabela(linha: LinhaTabPartDiaria){
-        console.log(linha)
+        
         setTabelaPD(a => [linha, ...a])
     }
 
@@ -70,6 +73,7 @@ export default function ParteDiaria({params}: ParteDiariaProps){
         new Date(e.data_inicial_trabalho).getMonth() === dataParte?.getMonth() &&
         new Date(e.data_inicial_trabalho).getFullYear() === dataParte?.getFullYear()
         )
+        
 
         if(infosDia){
             const horimetros = infosDia.map(e => e.horimetro_inicial)
@@ -110,15 +114,11 @@ export default function ParteDiaria({params}: ParteDiariaProps){
 
                     <ul className='grid grid-cols-3  p-5  '>
                         <li className='col-span-full font-semibold text-lg text-left 
-                        border-b-2 border-zinc-700 pb-1'>Parte diária - {maquina?.nome}, {obra?.nome}</li>
+                        border-b-2 border-zinc-700 pb-1'>Parte diária - {maquina?.nome}, {obra?.codigo} - {obra?.nome}</li>
                         <li className='text-left col-span-full font-semibold'>FORN: <span className='font-normal'>{maquina?.aluguelInfo?.fornecedor}</span></li>
                         <li className='text-left font-semibold'>MODELO 
                         <div className='font-normal'>{maquina?.modelo}</div>
                         </li>
-                        <li className='text-left font-semibold'>MARCA 
-                        <div className='font-normal'>
-                        CRIAR CAMPO MARCA
-                            </div></li>
                         <li className='text-left font-semibold'>CATEGORIA <div className='font-normal'>
                         {maquina?.categoria} </div></li>
                     </ul>
