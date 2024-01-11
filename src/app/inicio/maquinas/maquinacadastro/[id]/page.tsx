@@ -166,9 +166,7 @@ export default function PaginaCadastrarMaquina({
             }
 
         }
-        if (erros.length === 0) {
-            switch (maq?.categoria) {
-                case "Pesada": {
+        if (erros.length === 0) {                
                     fetch(`${link}/api/maquinas/cadastro`, {
                         method: 'POST',
                         body: JSON.stringify({ ...maqPesadaCur })
@@ -181,8 +179,8 @@ export default function PaginaCadastrarMaquina({
                         })
                     })
 
-                } break;
-            }
+                
+            
         } else {
 
             alert(erros.reduce((anterior, proximo) => `${anterior + proximo}\n`, "Erros: \n"))
@@ -249,11 +247,7 @@ export default function PaginaCadastrarMaquina({
     }
 
     function renderizarTipo(tipo: string | undefined) {
-        switch (categoria) {
-            case 'Pesada': {
-                return <MaquinaPesada tipo={tipo} onChange={atualizarMaquinaPesada} />
-            }
-        }
+        return <MaquinaPesada tipo={tipo} onChange={atualizarMaquinaPesada} />
     }
     function adicionarManutencao(man: MaquinaPlanoMan) {
         setPlanoMan([...planoManutencao, man])
