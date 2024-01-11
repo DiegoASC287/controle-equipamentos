@@ -19,12 +19,16 @@ idMaquina: number
 
 
 export default function FormParteDiaria(props: FormParteDiariaProps){
+    function dataDefaultHoje(hora: number, minuto: number){
+        const dataComp = new Date()
+        return new Date(dataComp.getFullYear(), dataComp.getMonth(), dataComp.getDate(), hora, minuto, 0, 0)
+    }
     const [maquina, setMaquina] = useState<Maquina>()
     const [apontadores, setApontadores] = useState<Apontador[]>()
     const [apontador, setApontador] = useState<string>("")
     const [descricaoServ, setDescricao] = useState<string>('')
-    const [dataInicialTrabalho, setDataInicialTrabalho] = useState(new Date()) 
-    const [dataFinalTrabalho, setDataFinalTrabalho] = useState(new Date()) 
+    const [dataInicialTrabalho, setDataInicialTrabalho] = useState(dataDefaultHoje(7, 0)) 
+    const [dataFinalTrabalho, setDataFinalTrabalho] = useState(dataDefaultHoje(17, 0)) 
     const [dataInicialInterf, setDataInicialInterf] = useState(new Date()) 
     const [dataFinalInterf, setDataFinalInterf] = useState(new Date()) 
     const [motivoInterf, setMotivoInterf] = useState<string>('')
@@ -44,9 +48,22 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
     const motivosLista =["","ALMOÇO", "ABASTECIMENTO","DESCLOCAMENTO", "MANUTENÇÃO",
     "CHUVA", "FALTA DE FRENTE", "OUTROS"]
 
+    
+    
     function alterarSelect(e: any){
         setSelecao(e.target.value)
         e.target.value !== "OUTROS" ? setMotivoInterf(e.target.value) : setMotivoInterf("")
+        if (e.target.value === "ALMOÇO"){
+            setDataInicialInterf(new Date(dataInicialTrabalho?.getFullYear(),
+            dataInicialTrabalho.getMonth(), dataInicialTrabalho.getDate(), 12, 0, 0, 0))
+            setDataFinalInterf(new Date(dataInicialTrabalho?.getFullYear(),
+            dataInicialTrabalho.getMonth(), dataInicialTrabalho.getDate(), 13, 0, 0, 0))
+        }else if(e.target.value === "FALTA DE FRENTE"){
+            setDataInicialInterf(new Date(dataInicialTrabalho?.getFullYear(),
+            dataInicialTrabalho.getMonth(), dataInicialTrabalho.getDate(), 7, 0, 0, 0))
+            setDataFinalInterf(new Date(dataInicialTrabalho?.getFullYear(),
+            dataInicialTrabalho.getMonth(), dataInicialTrabalho.getDate(), 17, 0, 0, 0))
+        }
     }
 
     const formatoHora = new Intl.DateTimeFormat("pt-BR", {

@@ -95,7 +95,6 @@ export default function PaginaCadastrarMaquina({
                 return <div className='bg-green-300'>Máquina adicionada com sucesso!</div>
             }
         }
-
     }
 
     useEffect(() => {
