@@ -141,7 +141,8 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
         if (motivoInterf === "ABASTECIMENTO"){
             if(total_combustivel !==0 && contadorAbastecimento !== 0 && preco_combustivel !== 0){
 
-                setListaInterfs(valor => [{preco_combustivel: preco_combustivel, total_combustivel:total_combustivel, contador: contadorAbastecimento ,hora_inicial:dataInicialInterf,
+                setListaInterfs(valor => [{preco_combustivel: preco_combustivel,
+                    total_combustivel:total_combustivel, contador: contadorAbastecimento ,hora_inicial:dataInicialInterf,
                     hora_final: dataFinalInterf, motivo: motivoInterf, id: (Math.random()*1000).toFixed(0)}, ...valor])
                 }else{
                     alert(`Preencha os campos Val abastecido e ${maquina?.unidade === "h" ? 'horímetro': 'odômetro'}`)
@@ -200,7 +201,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             push(`Preencha o ${maquina?.unidade === "h" ? "horímetro": "odômetro"}`): null);
         
 
-        if (erros.length == 0){
+        if (erros.filter(e => e).length == 0){
             const ativi: LinhaTabPartDiaria = {
                 idMaquina: props.idMaquina,
                 dataFinalInterf: dataFinalInterf,
