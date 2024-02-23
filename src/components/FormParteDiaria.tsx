@@ -76,6 +76,7 @@ export default function FormParteDiaria(props: FormParteDiariaProps){
             cache: 'no-store',
             body: JSON.stringify({...atividade})
         }).then(resp => resp.json()).then(result => {
+            alert(`Teste: ${result.msg}`)
             props.adicionarLinha(result?.atividade)
             fetch('/api/uplog', {
                 method: 'POST',
