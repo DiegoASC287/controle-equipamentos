@@ -73,7 +73,7 @@ export async function POST(request: Request) {
             
             return NextResponse.json({msg: "Adicionado com sucesso", atividade: atividadeAdd}, {status: 200})
         } catch(e){
-            return NextResponse.json({msg: e}, {status: 406})
+            return NextResponse.json({msg: JSON.stringify(e)}, {status: 406})
         }
 }else {
     return NextResponse.json({er: "Atividade vazia"}, {status: 406})
